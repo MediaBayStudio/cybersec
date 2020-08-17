@@ -1,1 +1,1 @@
-# cybersek
+# cybersec

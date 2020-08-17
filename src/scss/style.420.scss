@@ -1,0 +1,24 @@
+// assets import
+@import 'assets/colors';
+@import 'assets/mixins';
+@import 'assets/variables';
+
+// blocks import
+@import 'general/buttons/buttons.420';
+@import 'general/popups/popups.420';
+@import 'general/sliders/sliders.420';
+@import 'general/forms/forms.420';
+@import 'general/interface/interface.420';
+@import '../layouts/mobile-menu/mobile-menu.420';
+@import '../layouts/side-menu/side-menu.420';
+@import '../layouts/articles/articles.420';
+@import '../layouts/subscribe/subscribe.420';
+@import '../layouts/single/single.420';
+@import '../layouts/about-hero/about-hero.420';
+@import '../layouts/mission-and-faq/mission-and-faq.420';
+@import '../layouts/reviews/reviews.420';
+@import '../layouts/contacts-hero/contacts-hero.420';
+@import '../layouts/hero-404/hero-404.420';
+@import '../layouts/overlay/overlay.420';
+@import '../layouts/search-popup/search-popup.420';
+@import '../layouts/thanks-popup/thanks-popup.420';
