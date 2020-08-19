@@ -2,3 +2,36 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.subscribe-sect {
+  padding: 115px 0 70px 20px;
+  background-size: cover, 240px 220px;
+  background-position: 0 0, bottom 85px right 16%;
+  &__title {
+    max-width: 460px;
+    font-size: 26px;
+    > .br {
+
+    }
+    &::before,
+    &::after {
+      font-size: 23px;
+    }
+    &::before {
+      top: -30px;
+    }
+    &::after {
+      right: 10px;
+      bottom: 15px;
+    }
+  }
+  &__descr {
+    margin: 0 0 40px;
+  }
+  &__link {
+
+    &::after {
+
+    }
+  }
+}

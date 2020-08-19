@@ -2,3 +2,34 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.hero-sect {
+  padding-top: 135px;
+  padding-bottom: 80px;
+  &__title {
+    max-width: 800px;
+    font-size: 36px;
+    .php,
+    .quote {
+      font-size: 23px;
+    }
+    > .text {
+      margin-top: 10px;
+      > .quote {
+        margin: 0 12.5px 0 17.5px;
+      }
+    }
+  }
+}
+
+#emoji {
+  margin-right: 160px;
+  &__circle {
+    width: 253px;
+    height: 214px;
+  }
+  &__face {
+    width: 134px;
+    height: 122px;
+  }
+}

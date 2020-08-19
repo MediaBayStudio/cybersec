@@ -2,3 +2,57 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.subscribe-sect {
+  padding: 60px 0 190px;
+  background:
+    url('#') 0 0/cover no-repeat,
+    url('#') bottom 20px center/190px 140px no-repeat,
+    #2d2d2d;
+  color: $white;
+  &__title {
+    position: relative;
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto 20px;
+    font: 20px/160% PressStart2P;
+    text-transform: uppercase;
+    &::before,
+    &::after {
+      position: absolute;
+      font: bold 15.22px/100% AnonymousPro;
+      color: $blue;
+      text-transform: none;
+    }
+    &::before {
+      content: '<p>';
+      left: 50%;
+      transform: translateX(-50%);
+      top: -25px;
+    }
+    &::after {
+      content: '</p>';
+      right: -15px;
+      bottom: -10px;
+    }
+  }
+  &__descr {
+    max-width: 280px;
+    margin: 0 auto 30px;
+    text-align: center;
+    font: 600 16px/140% Montserrat;
+  }
+  &__link {
+    margin: 0 auto;
+    width: 240px;
+    height: 45px;
+    &::after {
+      content: '';
+      margin-left: 5px;
+      display: block;
+      width: 20px;
+      height: 17px;
+      background: url('../img/icon-telegram.svg') center/contain no-repeat;
+    }
+  }
+}

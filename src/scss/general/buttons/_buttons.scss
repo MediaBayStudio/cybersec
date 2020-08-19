@@ -2,3 +2,13 @@
 @import '../../assets/colors';
 @import '../../assets/mixins';
 @import '../../assets/variables';
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: bold 16px/100% Montserrat;
+  color: $white;
+  background: $malachite;
+  transition: background .5s;
+}

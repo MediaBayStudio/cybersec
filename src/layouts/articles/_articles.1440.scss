@@ -2,3 +2,35 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.articles {
+  grid-template-columns: 1fr 65px 1fr;
+  &-wrapper {
+    overflow: hidden;
+    grid-template-columns: responsive('1440->2560', '315->875') auto;
+    // grid-template-columns: responsive('1024->1439', '262->469') auto;
+  }
+  &-sect {
+    padding: 80px responsive('1440->2560', '102->654.500') 45px 105px;
+    &__title {
+      font-size: 24px;
+    }
+  }
+}
+
+.single {
+  width: 427px;
+  &:nth-last-child(n+1) {
+    margin-bottom: 35px;
+  }
+  &__img {
+    width: 427px;
+    height: 297px;
+  }
+  &__title {
+    font-size: 22px;
+  }
+  &__category {
+    padding: 5px 8px;
+  }
+}

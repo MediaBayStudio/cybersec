@@ -8,6 +8,10 @@ a[href="#"] {
   pointer-events: none;
 }
 
+html[lang="ru-RU"] {
+  margin-top: 0 !important;
+}
+
 body.no-scroll {
   overflow: hidden;
 }
@@ -43,6 +47,11 @@ body.no-scroll {
   }
 }
 
+.nav__link {
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color .35s, color .35s;
+}
+
 .sect {
 
   &_bg {
@@ -59,6 +68,8 @@ body.no-scroll {
 div.wpcf7-response-output,
 span.wpcf7-not-valid-tip,
 .screen-reader-response,
+#wpadminbar,
 .hidden {
   display: none !important;
 }
+

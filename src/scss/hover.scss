@@ -2,3 +2,52 @@
 @import 'assets/colors';
 @import 'assets/mixins';
 @import 'assets/variables';
+
+.nav__link {
+  &:hover {
+    color: $malachite;
+    border-bottom-color: $malachite;
+  }
+}
+
+.single__thumb:hover ~ .single__title .single__title-text,
+.single__title:hover .single__title-text {
+  border-bottom-color: currentColor;
+}
+
+.single {
+  &__title {
+    &-text {
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color .35s;
+    }
+  }
+}
+
+.articles-sect__link:hover {
+  border-bottom-color: transparent;
+}
+
+.single__category:hover {
+  background: $blue;
+}
+
+.single__tag:hover {
+  color: $white;
+  background: $blue;
+}
+
+.ftr__telegram:hover,
+.ftr__instagram:hover {
+  fill: $malachite;
+  color: $white;
+}
+
+.ftr__policy:hover {
+  color: $malachite;
+  border-bottom-color: transparent;
+}
+
+.ftr__dev-link:hover {
+  color: $malachite;
+}

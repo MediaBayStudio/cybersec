@@ -1,7 +1,7 @@
 (function() {
-  thanksPopup = new Popup('.thanks-popup', {
-    closeButtons: '.thanks-popup__close'
-  });
+  // thanksPopup = new Popup('.thanks-popup', {
+  //   closeButtons: '.thanks-popup__close'
+  // });
 
   // thanksPopup.addEventListener('popupbeforeopen', function() {
   //   clearTimeout(thanksPopupTimer);

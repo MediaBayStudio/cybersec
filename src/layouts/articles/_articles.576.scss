@@ -2,3 +2,58 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.articles-sect {
+  // max-width: 390px;
+  // max-width: 450px;
+  // margin-left: auto;
+  padding-right: responsive('576->767', '20->115.500');
+}
+
+.single {
+  &:nth-last-child(n+2) {
+  }
+  &__thumb {
+
+  }
+  &__img {
+    max-width: 100%;
+    width: 363px;
+    height: 285px;
+    max-height: none;
+    // width: 450px;
+    // height: 310px;
+    // width: 350px;
+    // height: 255px;
+  }
+  &__row {
+
+  }
+  &__categories {
+
+  }
+  &__category {
+
+  }
+  &__date {
+
+  }
+  &__title {
+
+  }
+  &__excerpt {
+
+  }
+}
+
+.articles {
+  &-wrapper {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 35% auto;
+  }
+  &-content {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}

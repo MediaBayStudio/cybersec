@@ -30,3 +30,12 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'SegoeUI';
+  font-display: swap;
+  src: local('SegoeUI Semibold'), local('SegoeUI-SemiBold'),
+    url('../fonts/SegoeUI-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}

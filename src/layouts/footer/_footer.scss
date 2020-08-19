@@ -2,3 +2,92 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.ftr {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 45px 20px 65px;
+  color: $white;
+  background: #2d2c2c;
+  font: 16px/160% AnonymousPro;
+  text-align: center;
+  &__logo {
+    width: 145px;
+    margin-bottom: 35px;
+  }
+  &__logo-img {
+  }
+  &__copy {
+    // max-width: 180px;
+    font-weight: bold;
+  }
+  &__menu {
+    margin: 35px auto 15px;
+    padding: 0;
+    width: 230px;
+    display: flex;
+    flex-wrap: wrap;
+    font: 16px/160% AnonymousPro;
+    list-style: none;
+    text-align: left;
+  }
+  &__menu-item {
+    // width: 50%;
+    width: 70%;
+    margin-bottom: 20px;
+    &:nth-child(2n) {
+      width: 30%;
+    }
+  }
+  &__menu-link {
+
+  }
+  &__nav {
+    margin: auto;
+    width: 230px;
+    font-weight: bold;
+    text-align: left;
+    .nav__list-item {
+      margin-bottom: 5px;
+    }
+  }
+  &__links {
+    margin: 25px auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  // fill - заливка
+  // color - иконка
+  &__telegram {
+    margin-right: 35px;
+  }
+  &__telegram,
+  &__instagram {
+    fill: $lightgrey;
+    color: #2d2c2c;
+    width: 35px;
+    height: 35px;
+    transition: fill .35s, color .35s;
+  }
+  &__bottom {
+
+  }
+  &__policy {
+    font: 14px/160% Montserrat;
+    border-bottom: 1px solid;
+    transition: border-bottom-color .35s, color .35s;
+  }
+  &__dev {
+    margin-top: 15px;
+    &-text {
+
+    }
+    &-link {
+      font: bolder 16px/100% SegoeUI;
+      letter-spacing: 0.08em;
+      transition: color .35s;
+    }
+  }
+}

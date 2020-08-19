@@ -1,4 +1,91 @@
 <?php
+
+  // заворачиваем каждое слово и пробел в отдельный span
+  // чтобы при наведении можно было сделать равномерный border-bottom
+function wrap_words( $start, $end, $text ) {
+  return $start . implode( "{$end}{$start} {$end}{$start}", explode( ' ', $text ) ) . $end;
+}
+
+function print_singles( $singles, $args, $num = null ) {
+  if ( is_array( $args ) ) {
+    $sect_title = $args['sect_title'];
+    $sect_id = $args['sect_id'];
+    $category_href = $args['category_href'];
+  } else {
+    $sect_title = $args->name;
+    $sect_id = $args->slug;
+    $category_href = get_term_link( $args );
+  }
+
+  if ( $num >= 0 ) {
+    $tip = ' tip-' . $num;      
+  }
+
+  if ( $singles ) : ?>
+    <section class="articles-sect<?php echo $tip ?>" id="<?php echo $sect_id ?>">
+      <div class="articles-sect__row">
+        <h2 class="articles-sect__title"><?php echo $sect_title ?></h2>
+        <a href="<?php echo $category_href ?>" class="articles-sect__link">Еще статьи</a>
+      </div>
+      <div class="articles"> <?php
+        foreach ( $singles as $single ) :
+          $href = get_the_permalink( $single );
+          $title = get_the_title( $single );
+          $excerpt = kama_excerpt( [
+            'maxchar'   =>  120,
+            'text'      =>  get_the_excerpt( $single ),
+            'autop'     =>  false,
+            'ignore_more' => true
+          ] );
+
+          $cat_classes = [
+            0 => 'single__categories',
+            1 => 'single__category'
+          ];
+
+          if ( $sect_id === 'hot' || $sect_id === 'fresh' ) {
+            $categories = get_the_terms( $single, 'category' );
+          } else {
+            $categories = get_the_tags( $single );
+            if ( $categories ) {
+              $cat_classes = [
+                0 => 'single__tags',
+                1 => 'single__tag'
+              ];
+            } else {
+              $categories = get_the_terms( $single, 'category' );
+            }
+          }
+          
+          $datetime = get_the_date( 'Y-m-d', $single );
+          $date = get_the_date( 'd.m.Y', $single );
+          $str = '<article class="single">' ?>
+          <article class="single"> <?php
+            if ( has_post_thumbnail( $single ) ) : ?>
+              <a href="<?php echo $href ?>" class="single__thumb">
+                <img src="#" data-src="<?php echo get_the_post_thumbnail_url( $single ) ?>" alt="<?php echo $title ?>" class="single__img lazy" style="background-image:<?php echo $img_placeholder_url ?>">
+              </a> <?php
+            endif ?>
+            <div class="single__row">
+              <div class="<?php echo $cat_classes[0] ?>"> <?php
+                foreach ( $categories as $category ) :
+                  if ( $category->slug === 'hot' ) continue ?>
+                  <a href="<?php echo get_term_link( $category ) ?>" class="<?php echo $cat_classes[1] ?>"><?php echo $category->name ?></a><svg class="hot-icon"><use xlink:href="<?php echo get_template_directory_uri() . '/img/icons-sprite.svg#icon-fire' ?>"></use></svg> <?php
+                endforeach ?>
+              </div>
+              <time datetime="<?php echo $datetime ?>" class="single__date"><?php echo $date ?></time>
+            </div>
+            <h3 class="single__title"><a href="<?php echo $href ?>" class="single__title-link"><?php echo wrap_words( '<span class="single__title-text">', '</span>', $title ) ?></a></h3>
+            <p class="single__excerpt"><?php echo $excerpt ?></p>
+          </article> <?php
+        endforeach ?>
+      </div>
+    </section> <?php
+  endif;
+
+  // die();
+}
+
 // Отключаем разные стандартные скрипты и стили wp
 add_action( 'init', function() {
   // Отключаем wp-emoji
@@ -22,6 +109,69 @@ add_action( 'init', function() {
     } );
   }
 } );
+
+function kama_excerpt( $args = '' ){
+  global $post;
+
+    if( is_string($args) )
+    parse_str( $args, $args );
+
+  $rg = (object) array_merge( array(
+    'maxchar'     => 350,   // Макс. количество символов.
+    'text'        => '',    // Какой текст обрезать (по умолчанию post_excerpt, если нет post_content.
+    'autop'       => true,  // Заменить переносы строк на <p> и <br> или нет?
+    'save_tags'   => '',    // Теги, которые нужно оставить в тексте, например '<strong><b><a>'.
+    'more_text'   => 'Читать дальше...', // Текст ссылки `Читать дальше`.
+    'ignore_more' => false, // нужно ли игнорировать  в контенте
+  ), $args );
+
+  $rg = apply_filters( 'kama_excerpt_args', $rg );
+
+  if( ! $rg->text )
+    $rg->text = $post->post_excerpt ?: $post->post_content;
+
+  $text = $rg->text;
+  // убираем блочные шорткоды: [foo]some data[/foo]. Учитывает markdown
+  $text = preg_replace( '~\[([a-z0-9_-]+)[^\]]*\](?!\().*?\[/\1\]~is', '', $text );
+  // убираем шоткоды: [singlepic id=3]. Учитывает markdown
+  $text = preg_replace( '~\[/?[^\]]*\](?!\()~', '', $text );
+  $text = trim( $text );
+
+  // 
+  if( ! $rg->ignore_more  &&  strpos( $text, '') ){
+    preg_match('/(.*)/s', $text, $mm );
+
+    $text = trim( $mm[1] );
+
+    $text_append = ' <a href="'. get_permalink( $post ) .'#more-'. $post->ID .'">'. $rg->more_text .'</a>';
+  }
+  // text, excerpt, content
+  else {
+    $text = trim( strip_tags($text, $rg->save_tags) );
+
+    // Обрезаем
+    if( mb_strlen($text) > $rg->maxchar ){
+      $text = mb_substr( $text, 0, $rg->maxchar );
+      $text = preg_replace( '~(.*)\s[^\s]*$~s', '\\1...', $text ); // кил последнее слово, оно 99% неполное
+    }
+  }
+
+  // сохраняем переносы строк. Упрощенный аналог wpautop()
+  if( $rg->autop ){
+    $text = preg_replace(
+      array("/\r/", "/\n{2,}/", "/\n/",   '~</p><br ?/?>~'),
+      array('',     '</p><p>',  '<br />', '</p>'),
+      $text
+    );
+  }
+
+  $text = apply_filters( 'kama_excerpt', $text, $rg );
+
+  if( isset($text_append) )
+    $text .= $text_append;
+
+  return ( $rg->autop && $text ) ? "<p>$text</p>" : $text;
+}
 
 // убрать описание для таксономий в админке
 add_action( 'admin_head', function() {
@@ -200,3 +350,31 @@ add_action( 'wp_enqueue_scripts', function() {
   add_filter( 'nav_menu_item_id', function( $menu_id, $item, $args, $depth ) {
     return '';
   }, 10, 4);
+
+// переименовать рубрики в категории
+add_filter( 'taxonomy_labels_'.'category', function( $labels ) {
+
+  // Запишем лейблы для изменения в виде массива для удобства
+  $my_labels = [
+    'name'                  => 'Категории',
+    'singular_name'         => 'Категория',
+    'search_items'          => 'Поиск категорий',
+    'all_items'             => 'Все категории',
+    'parent_item'           => 'Родительская категория',
+    'parent_item_colon'     => 'Родительская категория:',
+    'edit_item'             => 'Изменить категорию',
+    'view_item'             => 'Просмотреть категорию',
+    'update_item'           => 'Обновить категорию',
+    'add_new_item'          => 'Добавить новую категорию',
+    'new_item_name'         => 'Название новой категории',
+    'not_found'             => 'Категории не найдены',
+    'no_terms'              => 'Категорий нет',
+    'items_list_navigation' => 'Навигация по списку категорий',
+    'items_list'            => 'Список категорий',
+    'back_to_items'         => '← Назад к категориям',
+    'menu_name'             => 'Категории',
+  ];
+
+  return $my_labels;
+} );
+

@@ -2,3 +2,30 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.hdr {
+  &__logo {
+    &-img {
+      width: 145px;
+      height: 35px;
+    }
+  }
+  &__nav {
+    margin: 0 55px 0 auto;
+  }
+  .nav__list {
+
+  }
+  .nav__list-item {
+    &:nth-last-child(n+2) {
+      margin-right: 65px;
+    }
+  }
+  .burger {
+
+  }
+}
+
+#hdr__search {
+
+}

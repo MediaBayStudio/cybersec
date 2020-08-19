@@ -8,11 +8,13 @@
 @import 'assets/variables';
 
 // blocks import
+@import '../layouts/header/header';
 @import 'general/buttons/buttons';
 @import 'general/popups/popups';
 @import 'general/sliders/sliders';
 @import 'general/forms/forms';
 @import 'general/interface/interface';
+@import '../layouts/hero/hero';
 @import '../layouts/mobile-menu/mobile-menu';
 @import '../layouts/side-menu/side-menu';
 @import '../layouts/articles/articles';
@@ -23,6 +25,7 @@
 @import '../layouts/reviews/reviews';
 @import '../layouts/contacts-hero/contacts-hero';
 @import '../layouts/hero-404/hero-404';
+@import '../layouts/footer/footer';
 @import '../layouts/overlay/overlay';
 @import '../layouts/search-popup/search-popup';
 @import '../layouts/thanks-popup/thanks-popup';

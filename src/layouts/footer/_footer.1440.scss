@@ -2,3 +2,40 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.ftr {
+  padding: 65px responsive('1440->2560', '102->654.500') 55px 105px;
+  grid-template-rows: auto 40px auto;
+  &__logo {
+
+  }
+  &__logo-img {
+  }
+  &__copy {
+
+  }
+  &__menu {
+
+  }
+  &__menu-item {
+  }
+  &__menu-link {
+  }
+  &__nav {
+
+  }
+  &__bottom {
+
+  }
+  &__policy {
+
+  }
+  &__dev {
+    &-text {
+
+    }
+    &-link {
+      
+    }
+  }
+}

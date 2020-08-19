@@ -2,3 +2,60 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.hero {
+  &-sect {
+    margin-top: -67px;
+    padding-top: 110px;
+    padding-bottom: 75px;
+    background:
+      url('#') top left/cover no-repeat,
+      url('#') top left/cover no-repeat,
+      #2E2E2E;
+    color: $lightgrey;
+    &__title {
+      max-width: 350px;
+      display: flex;
+      flex-wrap: wrap;
+      font: 18px/200% PressStart2P;
+      text-transform: uppercase;
+      .br {
+        display: none;
+      }
+      .php {
+        font: bold 12px/140% AnonymousPro;
+        text-transform: none;
+        color: $blue;
+        > .echo {
+          color: $malachite;
+        }
+      }
+      > .text {
+        margin-top: 10px;
+        // display: flex;
+        // flex-wrap: wrap;
+        // align-items: center;
+        > .quote {
+          margin: 0 7.5px;
+        }
+      }
+      .quote {
+        // vertical-align: super;
+        font: bold 12px/140% AnonymousPro;
+        color: $red;
+      }
+      > .quote {
+        margin-left: 7.5px;
+      }
+      .mark {
+        padding: 7.5px 12.5px;
+        background: $lightgrey;
+        color: #303030;
+      }
+    }
+  }
+}
+
+#emoji {
+  display: none;
+}

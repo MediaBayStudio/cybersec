@@ -2,3 +2,33 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.hdr {
+  &__logo {
+    &-img {
+      width: 120px;
+      height: 30px;
+    }
+  }
+  &__nav {
+    margin: auto;
+    display: block;
+    font: 14px/100% Montserrat;
+    color: $lightgrey;
+  }
+  .nav__list {
+    display: flex;
+  }
+  .nav__list-item {
+    &:nth-last-child(n+2) {
+      margin-right: 25px;
+    }
+  }
+  .burger {
+    display: none;
+  }
+}
+
+#hdr__search {
+  margin: 0;
+}

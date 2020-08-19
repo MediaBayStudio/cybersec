@@ -2,3 +2,29 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.hdr {
+  &__logo {
+    &-img {
+
+    }
+  }
+  &__nav {
+    font-size: 16px;
+  }
+  .nav__list {
+
+  }
+  .nav__list-item {
+    &:nth-last-child(n+2) {
+      margin-right: 40px;
+    }
+  }
+  .burger {
+
+  }
+}
+
+#hdr__search {
+
+}

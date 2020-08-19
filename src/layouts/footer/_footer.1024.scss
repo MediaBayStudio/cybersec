@@ -2,3 +2,41 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.ftr {
+  padding: 65px responsive('1024->1439', '42->249.500') 55px 20px;
+  font-size: 16px;
+  &__logo {
+
+  }
+  &__logo-img {
+  }
+  &__copy {
+
+  }
+  &__menu {
+
+  }
+  &__menu-item {
+  }
+  &__menu-link {
+  }
+  &__nav {
+
+  }
+  &__bottom {
+
+  }
+  &__policy {
+    font-size: 14px;
+  }
+  &__dev {
+    font-size: 16px;
+    &-text {
+
+    }
+    &-link {
+      
+    }
+  }
+}

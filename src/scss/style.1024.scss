@@ -4,11 +4,13 @@
 @import 'assets/variables';
 
 // blocks import
+@import '../layouts/header/header.1024';
 @import 'general/buttons/buttons.1024';
 @import 'general/popups/popups.1024';
 @import 'general/sliders/sliders.1024';
 @import 'general/forms/forms.1024';
 @import 'general/interface/interface.1024';
+@import '../layouts/hero/hero.1024';
 @import '../layouts/mobile-menu/mobile-menu.1024';
 @import '../layouts/side-menu/side-menu.1024';
 @import '../layouts/articles/articles.1024';
@@ -19,6 +21,7 @@
 @import '../layouts/reviews/reviews.1024';
 @import '../layouts/contacts-hero/contacts-hero.1024';
 @import '../layouts/hero-404/hero-404.1024';
+@import '../layouts/footer/footer.1024';
 @import '../layouts/overlay/overlay.1024';
 @import '../layouts/search-popup/search-popup.1024';
 @import '../layouts/thanks-popup/thanks-popup.1024';

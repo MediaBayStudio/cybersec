@@ -2,3 +2,42 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.subscribe-sect {
+  padding: 90px 0 70px 20px;
+  background-position: 0 0, bottom 75px right 50px;
+  background-size: cover, 200px 160px;
+  &__title {
+    max-width: 365px;
+    margin: 0 0 35px;
+    line-height: 200%;
+    text-align: left;
+    letter-spacing: 0.05em;
+    > .br {
+      display: none;
+    }
+    &::before,
+    &::after {
+
+    }
+    &::before {
+      transform: none;
+      left: 0;
+    }
+    &::after {
+      right: 30px;
+      bottom: 14px;
+    }
+  }
+  &__descr {
+    margin: 0 0 75px;
+    max-width: 300px;
+    text-align: left;
+  }
+  &__link {
+    margin: 0;
+    &::after {
+
+    }
+  }
+}

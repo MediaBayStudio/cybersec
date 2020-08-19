@@ -2,3 +2,38 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+
+.articles {
+  &-sect {
+    padding-top: 75px;
+  }
+  &-wrapper {
+    grid-template-columns: responsive('768->1023', '260->384') auto;
+  }
+  &-sect {
+    padding-right: responsive('768->1023', '41->168.500');
+    &__title {
+      font-size: 20px;
+    }
+  }
+}
+
+.single {
+  &:nth-last-child(n+2) {
+    margin-bottom: 40px;
+  }
+  &__title {
+    margin-bottom: 10px;
+  }
+  &__row {
+    margin-bottom: 15px;
+  }
+  &__thumb {
+    margin-bottom: 15px;
+  }
+  &__img {
+    width: 451px;
+    height: 313px;
+  }
+}
