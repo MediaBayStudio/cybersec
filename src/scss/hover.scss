@@ -3,7 +3,8 @@
 @import 'assets/mixins';
 @import 'assets/variables';
 
-.nav__link {
+.nav__link,
+.ftr__menu-link {
   &:hover {
     color: $malachite;
     border-bottom-color: $malachite;
@@ -50,4 +51,17 @@
 
 .ftr__dev-link:hover {
   color: $malachite;
+}
+
+.btn:hover {
+  background: $blue;
+}
+
+#search-btn:hover > .search-icon {
+  stroke: $malachite;
+}
+
+.sort__list-item:hover {
+  background: $blue;
+  color: $white;
 }

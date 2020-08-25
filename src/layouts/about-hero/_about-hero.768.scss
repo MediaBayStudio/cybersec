@@ -2,3 +2,23 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-hero-sect {
+  padding-bottom: 120px;
+  &::before {
+    font-size: 88px;
+    bottom: 130px;
+    right: calc(50% - 343px);
+  }
+  &__title {
+    font-size: 24px;
+  }
+  &__text {
+    font-size: 16px;
+  }
+  &__descr {
+  }
+  &__figure {
+    margin: 55px 0 0 185px;
+  }
+}

@@ -13,16 +13,31 @@
       url('#') top left/cover no-repeat,
       #2E2E2E;
     color: $lightgrey;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    &-decor {
+      top: 25%;
+      left: -200px;
+      width: 650px;
+      max-width: none;
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
     &__title {
       max-width: 350px;
       display: flex;
       flex-wrap: wrap;
       font: 18px/200% PressStart2P;
       text-transform: uppercase;
+      // position: relative;
+      // z-index: 0;
       .br {
         display: none;
       }
       .php {
+        display: inline-block;
         font: bold 12px/140% AnonymousPro;
         text-transform: none;
         color: $blue;
@@ -36,6 +51,7 @@
         // flex-wrap: wrap;
         // align-items: center;
         > .quote {
+          display: inline-block;
           margin: 0 7.5px;
         }
       }
@@ -45,6 +61,7 @@
         color: $red;
       }
       > .quote {
+        display: inline-block;
         margin-left: 7.5px;
       }
       .mark {
@@ -53,9 +70,40 @@
         color: #303030;
       }
     }
+    &__descr {
+      max-width: 480px;
+      font: bold 18px/140% AnonymousPro;
+      .quote {
+        display: inline-block;
+        font: bold 12px/140% AnonymousPro;
+        color: $red;
+      }
+      .php {
+        display: inline-block;
+        font: bold 12px/140% AnonymousPro;
+        text-transform: none;
+        color: $blue;
+      }
+    }
+  }
+  &-category {
+    > .hero-sect__title {
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
 }
 
 #emoji {
   display: none;
+}
+
+#category {
+  > .hero-sect {
+    > .hero-sect__title {
+      > .text {
+        width: 100%;
+      }
+    }
+  }
 }

@@ -2,3 +2,41 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.search-popup {
+  &__cnt {
+  }
+  &__close {
+    right: 100px;
+  }
+}
+.close-icon {
+}
+.search {
+}
+.search-icon {
+}
+.search-results {
+  &__article {
+  }
+}
+.article {
+  &__categories {
+  }
+  &__category {
+  }
+  &__title {
+  }
+  &__title-link {
+  }
+  &__excerpt {
+  }
+  &__row {
+  }
+  &__link {
+  }
+  &__date {
+  }
+}
+.hot-icon {
+}

@@ -2,3 +2,45 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.search-popup {
+  &__cnt {
+    padding-top: 55px;
+  }
+  &__close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+  }
+}
+.close-icon {
+}
+.search {
+}
+.search-icon {
+}
+.search-results {
+  &__article {
+  }
+}
+.article {
+  &__categories {
+  }
+  &__category {
+  }
+  &__title {
+  }
+  &__title-link {
+  }
+  &__excerpt {
+  }
+  &__row {
+  }
+  &__link {
+  }
+  &__date {
+  }
+}
+.hot-icon {
+}

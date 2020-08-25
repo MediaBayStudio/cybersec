@@ -1,66 +1,68 @@
-<div class="articles-wrapper"> <?php
-  global $template_directory;
-  global $categories ?>
+<?php
+  global
+    $template_directory,
+    $queried_object,
+    $is_category,
+    $is_front_page,
+    $categories ?>
+<div class="articles-wrapper">
   <aside class="side-menu">
+    <img src="<?php echo $template_directory ?>/img/side-menu-decor.svg" alt="Декор" class="side-menu-decor">
     <a href="/" class="side-menu__logo">
-      <img src="<?php echo get_template_directory_uri() . '/img/logo.png' ?>" alt="Логотип CyberSec" title="На главную" class="side-menu__logo-img">
-    </a> 
-    <nav class="side-menu__nav">
-      <ul class="nav__list"><?php
-        foreach ( $categories as $category ) : ?>   
-          <li class="nav__list-item">
-            <a href="<?php echo get_term_link( $category ) ?>" class="nav__link"><?php echo $category->name ?></a>
-          </li> <?php
-        endforeach ?>
-      </ul>
-    </nav>
+      <img src="<?php echo $template_directory . '/img/logo.png' ?>" alt="Логотип CyberSec" title="На главную" class="side-menu__logo-img">
+    </a> <?php 
+    wp_nav_menu( [
+      'theme_location'  => 'side_menu',
+      'container'       => 'nav',
+      'container_class' => 'side-menu__nav',
+      'menu_class'      => 'nav__list',
+      'items_wrap'      => '<ul class="%2$s">%3$s</ul>'
+    ] ) ?>
   </aside> 
   <div class="articles-content"> <?php
-  $img_placeholder_url = '/img/b.svg';
-  if ( is_front_page() ) {
-    $new_posts = get_posts( ['numberposts' => 0] );
+  if ( is_page( 'category' ) ) {
+    $is_category = true;
+  }
+  if ( $is_category ) {
+    $numberposts = 12;
+    $category_slug = $queried_object->slug;
+    $sect_id = '';
+    $sect_title = $queried_object->name;
 
-    $args = [
-      'sect_title' => 'Свежак',
-      'sect_id' => 'fresh',
-      'category_href' => 'category'
-    ];
+    $posts = get_posts( [
+      'numberposts' => $numberposts,
+      'category_name' => $category_slug
+    ] );
 
-    print_singles( $new_posts, $args, 0 );
+    print_article( $is_front_page, $is_category, $posts, $sect_id, $sect_title );
 
-    $hot_posts = get_posts( ['numberposts' => 0, 'category' => '12'] );
-
-    $args = [
-      'sect_title' => 'Горячее',
-      'sect_id' => 'hot',
-      'category_href' => 'hot'
-    ];
-
-    print_singles( $hot_posts, $args, 1 );
-    $i = 0;
-    foreach ( $categories as $category ) {
-      if ( $category->slug === 'hot' ) {
-        continue;
-      }
-      $posts = get_posts( [
-        'numberposts' => 0,
-        'category' => $category->term_id
-      ] );
-      if ( $i === 4 ) :
-        // Стили для секции subscribe лежал в папке subscribe
-        $subscribe_img = 'url(' . $template_directory . '/img/subscribe-img.svg)' ?>
-        <section class="subscribe-sect lazy" data-src="url(<?php echo $template_directory ?>/img/subscribe-pattern.320.svg), <?php echo $subscribe_img ?>" data-media="(min-width:767.98px){url(<?php echo $template_directory ?>/img/subscribe-pattern.768.svg), <?php echo $subscribe_img ?>} (min-width:1023.98px){url(<?php echo $template_directory ?>/img/subscribe-pattern.1024.svg), <?php echo $subscribe_img ?>} (min-width:1439.98px){url(<?php echo $template_directory ?>/img/subscribe-pattern.1440.svg), <?php echo $subscribe_img ?>}">
-          <h2 class="subscribe-sect__title">Подпишись<br class="br"> на наш телеграм&#8209;канал</h2>
-          <p class="subscribe-sect__descr">Получай все самые свежие и сочные новости и статьи первым</p>
-          <a href="/" class="subscribe-sect__link btn">Подписаться</a>
-        </section>
-        <?php 
-      endif;
-      print_singles( $posts, $category, $i + 2 );
-      $i++;
-    }
-  } ?>
-  </div> <?php
+  } else if ( $is_front_page ) {
+    if ( $categories ) :
+      for ( $i = 0; $i <= count( $categories ); $i++ ) :
+        if ( $i === 0 ) {
+          $posts = get_posts( [
+            'numberposts' => 4
+          ] );
+          $sect_id = 'id="fresh"';
+          $sect_title = 'Свежак';
+          $sect_href = 'category';
+          print_article( $is_front_page, $is_category, $posts, $sect_id, $sect_title, $sect_href );
+          
+        } else {
+          $category_slug = $categories[$i - 1]->slug;
+          $posts = get_posts( [
+            'numberposts' => 4,
+            'category_name' => $category_slug
+          ] );
+          $sect_id = 'id="' . $category_slug . '"';
+          $sect_title = $categories[$i - 1]->name;
+          $sect_href = get_term_link( $categories[$i - 1] );
+          print_article( $is_front_page, $is_category, $posts, $sect_id, $sect_title, $sect_href );
+        }
+      endfor;
+      wp_reset_postdata();
+    endif;
+  }
   get_footer() ?>
 </div>
 </body>

@@ -6,6 +6,9 @@
 .ftr {
   padding: 65px responsive('1440->2560', '102->654.500') 55px 105px;
   grid-template-rows: auto 40px auto;
+  &-decor {
+    right: 55px;
+  }
   &__logo {
 
   }
@@ -36,6 +39,12 @@
     }
     &-link {
       
+    }
+  }
+  &-with-nav {
+    padding: 65px calc(50% - 618px) 55px;
+    &-decor {
+      width: 1030px;
     }
   }
 }

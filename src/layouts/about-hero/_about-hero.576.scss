@@ -2,3 +2,22 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-hero-sect {
+  padding-bottom: 100px;
+  &::before {
+    transform: none;
+    right: calc(50% - 268px);
+    left: auto;
+    bottom: 120px;
+  }
+  &__title {
+  }
+  &__text {
+  }
+  &__descr {
+  }
+  &__figure {
+    margin: 70px 0 0 55px;
+  }
+}

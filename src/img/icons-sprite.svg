@@ -20,9 +20,11 @@
   </symbol>
 
 
-  <g id="icon-close">
-    <path xmlns="http://www.w3.org/2000/svg" fill="white" d="M2.121 0.601H27.121V3.601H2.121z" transform="rotate(45 2.121 .6)"/><path xmlns="http://www.w3.org/2000/svg" fill="white" d="M0 0H25V3H0z" transform="scale(-1 1) rotate(45 -9.564 -21.039)"/>
-  </g>
+  <symbol id="icon-close" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2.12109" width="25" height="3" transform="rotate(45 2.12109 0)" fill="inherit"/>
+    <rect width="25" height="3" transform="matrix(-0.707107 0.707107 0.707107 0.707107 17.6777 0)" fill="inherit"/>
+  </symbol>
+
   <symbol id="icon-fire" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10.2626 18.4685H9.58887V20.0001H10.2626V18.4685Z" fill="#141315"/>
     <path d="M9.56629 18.4685H8.89258V20.0001H9.56629V18.4685Z" fill="#141315"/>

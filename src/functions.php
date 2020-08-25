@@ -1,113 +1,276 @@
 <?php
+/**
+ * theme functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package theme
+ */
 
-  // заворачиваем каждое слово и пробел в отдельный span
-  // чтобы при наведении можно было сделать равномерный border-bottom
-function wrap_words( $start, $end, $text ) {
-  return $start . implode( "{$end}{$start} {$end}{$start}", explode( ' ', $text ) ) . $end;
+if ( ! defined( '_S_VERSION' ) ) {
+  // Replace the version number of the theme on each release.
+  define( '_S_VERSION', '1.0.0' );
 }
 
-function print_singles( $singles, $args, $num = null ) {
-  if ( is_array( $args ) ) {
-    $sect_title = $args['sect_title'];
-    $sect_id = $args['sect_id'];
-    $category_href = $args['category_href'];
-  } else {
-    $sect_title = $args->name;
-    $sect_id = $args->slug;
-    $category_href = get_term_link( $args );
+if ( ! function_exists( 'theme_setup' ) ) :
+  /**
+   * Sets up theme defaults and registers support for various WordPress features.
+   *
+   * Note that this function is hooked into the after_setup_theme hook, which
+   * runs before the init hook. The init hook is too late for some features, such
+   * as indicating support for post thumbnails.
+   */
+  function theme_setup() {
+    /*
+     * Make theme available for translation.
+     * Translations can be filed in the /languages/ directory.
+     * If you're building a theme based on theme, use a find and replace
+     * to change 'theme' to the name of your theme in all the template files.
+     */
+    load_theme_textdomain( 'theme', get_template_directory() . '/languages' );
+
+    // Add default posts and comments RSS feed links to head.
+    add_theme_support( 'automatic-feed-links' );
+
+    /*
+     * Let WordPress manage the document title.
+     * By adding theme support, we declare that this theme does not use a
+     * hard-coded <title> tag in the document head, and expect WordPress to
+     * provide it for us.
+     */
+    add_theme_support( 'title-tag' );
+
+    /*
+     * Enable support for Post Thumbnails on posts and pages.
+     *
+     * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+     */
+    add_theme_support( 'post-thumbnails' );
+
+    // Регистрируем меню
+    register_nav_menus( [
+        'side_menu' =>  esc_html__( 'Боковое меню рубрик', 'theme' ),
+        'header_menu' =>  esc_html__( 'Меню в шапке сайта', 'theme' ),
+        'mobile_menu' =>  esc_html__( 'Мобильное меню на сайте', 'theme' ),
+        'footer_menu' =>  esc_html__( 'Меню в подвале сайта', 'theme' )
+      ] );
+
+    /*
+     * Switch default core markup for search form, comment form, and comments
+     * to output valid HTML5.
+     */
+    add_theme_support(
+      'html5',
+      array(
+        'search-form',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'caption',
+        'style',
+        'script',
+      )
+    );
+
+    // Set up the WordPress core custom background feature.
+    add_theme_support(
+      'custom-background',
+      apply_filters(
+        'theme_custom_background_args',
+        array(
+          'default-color' => 'ffffff',
+          'default-image' => '',
+        )
+      )
+    );
+
+    // Add theme support for selective refresh for widgets.
+    add_theme_support( 'customize-selective-refresh-widgets' );
+
+    /**
+     * Add support for core custom logo.
+     *
+     * @link https://codex.wordpress.org/Theme_Logo
+     */
+    add_theme_support(
+      'custom-logo',
+      array(
+        'height'      => 250,
+        'width'       => 250,
+        'flex-width'  => true,
+        'flex-height' => true,
+      )
+    );
   }
+endif;
+add_action( 'after_setup_theme', 'theme_setup' );
 
-  if ( $num >= 0 ) {
-    $tip = ' tip-' . $num;      
-  }
-
-  if ( $singles ) : ?>
-    <section class="articles-sect<?php echo $tip ?>" id="<?php echo $sect_id ?>">
-      <div class="articles-sect__row">
-        <h2 class="articles-sect__title"><?php echo $sect_title ?></h2>
-        <a href="<?php echo $category_href ?>" class="articles-sect__link">Еще статьи</a>
-      </div>
-      <div class="articles"> <?php
-        foreach ( $singles as $single ) :
-          $href = get_the_permalink( $single );
-          $title = get_the_title( $single );
-          $excerpt = kama_excerpt( [
-            'maxchar'   =>  120,
-            'text'      =>  get_the_excerpt( $single ),
-            'autop'     =>  false,
-            'ignore_more' => true
-          ] );
-
-          $cat_classes = [
-            0 => 'single__categories',
-            1 => 'single__category'
-          ];
-
-          if ( $sect_id === 'hot' || $sect_id === 'fresh' ) {
-            $categories = get_the_terms( $single, 'category' );
-          } else {
-            $categories = get_the_tags( $single );
-            if ( $categories ) {
-              $cat_classes = [
-                0 => 'single__tags',
-                1 => 'single__tag'
-              ];
-            } else {
-              $categories = get_the_terms( $single, 'category' );
-            }
-          }
-          
-          $datetime = get_the_date( 'Y-m-d', $single );
-          $date = get_the_date( 'd.m.Y', $single );
-          $str = '<article class="single">' ?>
-          <article class="single"> <?php
-            if ( has_post_thumbnail( $single ) ) : ?>
-              <a href="<?php echo $href ?>" class="single__thumb">
-                <img src="#" data-src="<?php echo get_the_post_thumbnail_url( $single ) ?>" alt="<?php echo $title ?>" class="single__img lazy" style="background-image:<?php echo $img_placeholder_url ?>">
-              </a> <?php
-            endif ?>
-            <div class="single__row">
-              <div class="<?php echo $cat_classes[0] ?>"> <?php
-                foreach ( $categories as $category ) :
-                  if ( $category->slug === 'hot' ) continue ?>
-                  <a href="<?php echo get_term_link( $category ) ?>" class="<?php echo $cat_classes[1] ?>"><?php echo $category->name ?></a><svg class="hot-icon"><use xlink:href="<?php echo get_template_directory_uri() . '/img/icons-sprite.svg#icon-fire' ?>"></use></svg> <?php
-                endforeach ?>
-              </div>
-              <time datetime="<?php echo $datetime ?>" class="single__date"><?php echo $date ?></time>
-            </div>
-            <h3 class="single__title"><a href="<?php echo $href ?>" class="single__title-link"><?php echo wrap_words( '<span class="single__title-text">', '</span>', $title ) ?></a></h3>
-            <p class="single__excerpt"><?php echo $excerpt ?></p>
-          </article> <?php
-        endforeach ?>
-      </div>
-    </section> <?php
-  endif;
-
-  // die();
+/**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function theme_content_width() {
+  $GLOBALS['content_width'] = apply_filters( 'theme_content_width', 640 );
 }
+add_action( 'after_setup_theme', 'theme_content_width', 0 );
 
-// Отключаем разные стандартные скрипты и стили wp
-add_action( 'init', function() {
-  // Отключаем wp-emoji
-  remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-  remove_action( 'wp_print_styles', 'print_emoji_styles' );
-  remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-  remove_action( 'admin_print_styles', 'print_emoji_styles' );
-  remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-  remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-  // Отключаем скрипты wp-embed
-  remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
-  remove_action( 'wp_head', 'wp_oembed_add_host_js' );
-  // Отключаем гутенберг
-  if ( 'disable_gutenberg' ) {
-    add_filter( 'use_block_editor_for_post_type', '__return_false', 100 );
-    remove_action( 'wp_enqueue_scripts', 'wp_common_block_scripts_and_styles' );
-    add_action( 'admin_init', function() {
-      remove_action( 'admin_notices', ['WP_Privacy_Policy_Content', 'notice'] );
-      add_action( 'edit_form_after_title', ['WP_Privacy_Policy_Content', 'notice'] );
-    } );
+/**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function theme_widgets_init() {
+  register_sidebar(
+    array(
+      'name'          => esc_html__( 'Виджет', 'theme' ),
+      'id'            => 'sidebar-1',
+      'description'   => esc_html__( 'Можно добавить виджеты сюда', 'theme' ),
+      'before_widget' => '<section id="%1$s" class="widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h2 class="widget-title">',
+      'after_title'   => '</h2>',
+    )
+  );
+}
+add_action( 'widgets_init', 'theme_widgets_init' );
+
+/**
+ * Enqueue scripts and styles.
+ */
+function theme_scripts() {
+  // wp_enqueue_style( 'theme-style', get_stylesheet_uri(), array(), _S_VERSION );
+  // wp_style_add_data( 'theme-style', 'rtl', 'replace' );
+
+  // wp_enqueue_script( 'theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+
+  // if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+  //   wp_enqueue_script( 'comment-reply' );
+  // }
+}
+add_action( 'wp_enqueue_scripts', 'theme_scripts' );
+
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Functions which enhance the theme by hooking into WordPress.
+ */
+require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+
+require get_template_directory() . '/inc/enqueue-styles-and-scripts.php';
+
+
+require get_template_directory() . '/inc/template-singles.php';
+
+/**
+ * Load Jetpack compatibility file.
+ */
+// if ( defined( 'JETPACK__VERSION' ) ) {
+//  require get_template_directory() . '/inc/jetpack.php';
+// }
+
+// добавить класс для ссылки в меню (a)
+  add_filter( 'nav_menu_link_attributes', function( $atts, $item ) {
+    $atts['class'] = 'nav__link';
+    return $atts;
+  }, 10, 2);  
+
+// задать свои классы для пунктов меню (li)
+  add_filter( 'nav_menu_css_class', function( $classes, $item, $args, $depth ) {
+    $classesArray = ['nav__list-item'];
+    if ( $item->title === 'Главная' ) {
+      $classesArray[] = 'front-page-list-item';
+    }
+    foreach ( $classes as $class ) {
+      if ( $class === 'current-menu-item' ) {
+        $classesArray[] = 'current';
+      }
+    }
+    return $classesArray;
+  }, 10, 4);
+
+// убрать id у пунктов меню
+  add_filter( 'nav_menu_item_id', function( $menu_id, $item, $args, $depth ) {
+    return '';
+  }, 10, 4);
+
+// переименовать рубрики в категории
+add_filter( 'taxonomy_labels_'.'category', function( $labels ) {
+
+  // Запишем лейблы для изменения в виде массива для удобства
+  $my_labels = [
+    'name'                  => 'Категории',
+    'singular_name'         => 'Категория',
+    'search_items'          => 'Поиск категорий',
+    'all_items'             => 'Все категории',
+    'parent_item'           => 'Родительская категория',
+    'parent_item_colon'     => 'Родительская категория:',
+    'edit_item'             => 'Изменить категорию',
+    'view_item'             => 'Просмотреть категорию',
+    'update_item'           => 'Обновить категорию',
+    'add_new_item'          => 'Добавить новую категорию',
+    'new_item_name'         => 'Название новой категории',
+    'not_found'             => 'Категории не найдены',
+    'no_terms'              => 'Категорий нет',
+    'items_list_navigation' => 'Навигация по списку категорий',
+    'items_list'            => 'Список категорий',
+    'back_to_items'         => '← Назад к категориям',
+    'menu_name'             => 'Категории',
+  ];
+
+  return $my_labels;
+} );
+
+ /* Настройка контактов в панели настройки->общее */
+// Функции вывода нужных полей
+  function options_inp_html ( $id ) {
+    echo "<input type='text' name='{$id}' value='" . esc_attr( get_option( $id ) ) . "'>";
   }
+
+  add_action( 'admin_init', function() {
+    $options = [
+      'tel'     =>  'Телефон',
+      'address' =>  'Адрес',
+      'email'   =>  'E-mail',
+      'coords'  =>  'Координаты маркера на карте',
+      'zoom'    =>  'Увеличение карты'
+    ];
+
+    foreach ($options as $id => $name) {
+      $my_id = "contacts_{$id}";
+
+      add_settings_field( $id, $name, 'options_inp_html', 'general', 'default', $my_id );
+      register_setting( 'general', $my_id );
+    }
+  } );
+
+
+// удаление ненужных миниатюр
+add_filter( 'intermediate_image_sizes', function ( $sizes ){
+  // размеры которые нужно удалить
+  return array_diff( $sizes, [
+    'medium',
+    'medium_large',
+    'large',
+    '1536x1536',
+    '2048x2048',
+  ] );
 } );
 
 function kama_excerpt( $args = '' ){
@@ -173,208 +336,117 @@ function kama_excerpt( $args = '' ){
   return ( $rg->autop && $text ) ? "<p>$text</p>" : $text;
 }
 
-// убрать описание для таксономий в админке
-add_action( 'admin_head', function() {
-  print
-  '<style>
-    .term-description-wrap {display:none}
-  </style>';
-} );
+function wrap_words( $start, $end, $text ) {
+  return $start . implode( "{$end}{$start} {$end}{$start}", explode( ' ', $text ) ) . $end;
+}
 
-      /* Contact Form 7 */
-// Отключаем весь css-файл CF7
-  add_filter( 'wpcf7_load_css', '__return_false' );
+function load_singles() {
+  $post_sort = $_POST['sort'];
+  $post_cat = $_POST['category'];
+  $post_tag = $_POST['tag'];
 
-// Отключаем генерацию некоторых лишнех тегов
-  add_filter( 'wpcf7_autop_or_not', '__return_false' );
-// необходимые поддержки темой
-  add_theme_support( 'title-tag' );
-  add_theme_support( 'post-thumbnails' );
+  if ( $post_sort ) {
 
-// удаление ненужных миниатюр
-add_filter( 'intermediate_image_sizes', function ( $sizes ){
-  // размеры которые нужно удалить
-  return array_diff( $sizes, [
-    'medium',
-    'medium_large',
-    'large',
-    '1536x1536',
-    '2048x2048',
-  ] );
-} );
-
-// add_image_size( 'size_name', 100, 100, true );
-
-// Функция подключения стилей
-function enqueue_style( $style_name, $widths ) {
-  if ( is_string( $widths ) ) {
-    if ( $style_name === 'hover' ) {
-      wp_enqueue_style( "{$style_name}", get_template_directory_uri() . "/css/{$style_name}.css", [], null, "(hover), (min-width:1024px)" );
+    if ( $post_tag ) {
+      $tag = $post_tag;
     } else {
-      wp_enqueue_style( "{$style_name}", get_template_directory_uri() . "/css/{$style_name}.css", [], null );
+      $tag = '';
     }
-  } else {
-    foreach ( $widths as $width ) {
-      if ( $width !== "0" ) {
-        $media = $width - 0.02;
-      wp_enqueue_style( "{$style_name}-{$width}px", get_template_directory_uri() . "/css/{$style_name}.{$width}.css", [], null, "(min-width: {$media}px)" );
-      } else {
-        wp_enqueue_style( "{$style_name}-page", get_template_directory_uri() . "/css/{$style_name}.css", [], null );
-      }
+
+    if ( $post_cat && $post_cat === 'null' ) {
+      $cat = 0;
+    } else {
+      $cat = $post_cat;
     }
+
+    $posts = get_posts( [
+      'numberposts' => 12,
+      'order' => $post_sort,
+      'tag' => $tag,
+      'category' => $cat
+    ] );
+
+    $articles = '';
+
+    if ( $posts ) {
+      $i = 0;
+      foreach ( $posts as $post ) :
+        if ( $i % 4 === 0 ) {
+          $articles .= '<div class="articles">';
+        }
+        $href = get_the_permalink( $post );
+        $title = get_the_title( $post );
+        $excerpt = kama_excerpt( [
+          'maxchar'   =>  120,
+          'text'      =>  get_the_excerpt( $post ),
+          'autop'     =>  false,
+          'ignore_more' => true
+        ] );
+
+        $cat_classes = [
+          0 => 'single__categories',
+          1 => 'single__category'
+        ];
+
+        if ( $sect_id === 'hot' || $sect_id === 'fresh' ) {
+          $categories = get_the_terms( $post, 'category' );
+        } else {
+          $categories = get_the_terms( $post, 'post_tag' );
+          if ( $categories ) {
+            $cat_classes = [
+              0 => 'single__tags',
+              1 => 'single__tag'
+            ];
+          } else {
+            $categories = get_the_terms( $post, 'category' );
+          }
+        }
+        
+        $datetime = get_the_date( 'Y-m-d', $post );
+        $date = get_the_date( 'd.m.Y', $post );
+        $post_categories = '';
+        if ( has_post_thumbnail( $post ) ) {
+          $thumbnail = '
+          <a href="<?php echo $href ?>" class="single__thumb">
+            <img src="#" data-src="' . get_the_post_thumbnail_url( $post ) . '" alt="' . $title . '" class="single__img lazy">
+          </a>';
+        }
+
+        foreach ( $categories as $post_category ) {
+          $post_categories .= '<a href="' . get_term_link( $post_category ) . '" class="' . $cat_classes[1] . '">' . $post_category->name . '</a>
+          <svg class="hot-icon"><use xlink:href="' . get_template_directory_uri() . '/img/icons-sprite.svg#icon-fire"></use></svg>';
+        }
+
+        $article = '
+          <article class="single">' . $thumbnail . '
+            <div class="single__row">
+              <div class="' . $cat_classes[0] . '">'
+                . $post_categories . '  
+              </div>
+              <time datetime="' . $datetime . '" class="single__date">' . $date . '</time>
+            </div>
+            <h3 class="single__title"><a href="' . $href . '" class="single__title-link">' . wrap_words( '<span class="single__title-text">', '</span>', $title ) . '</a></h3>
+            <p class="single__excerpt">' . $excerpt . '</p>
+          </article>';
+
+        $articles .= $article;
+
+        if ( ($i + 1) % 4 === 0 || !$posts[$i + 1] ) {
+          $articles .= '</div>';
+        }
+
+      $i++;
+      endforeach;
+    } else {
+      $articles = '<p class="tags-error">В категории ' . get_cat_name( $cat ) . ' не найдено статей с выбранными тегами. Попробуйте выбрать другие теги.</p>';
+    }
+
+    $response = $articles;
+
+    echo $response;
+    die();
   }
 }
 
-// Подключаем свои стили и скрипты
-add_action( 'wp_enqueue_scripts', function() {
-  $screen_widths = ['0', '420', '576', '768', '1024', '1440']; // на каких экранах подключать css
-
-  wp_enqueue_style( 'theme-style', get_stylesheet_uri() );        // подключить стиль темы (default)
-
-  // подключаем стили с помощью своей функции
-  enqueue_style( 'style', $screen_widths );
-
-  #!!!styles
-
-  enqueue_style( 'hover', '' ); // подключаем стили для эффектов при наведении
-
-  // Подключаем скрипты циклом
-  $scripts = [
-				'slick.min',
-			'jquery.validate.min',
-			'lazy.min',
-			'MobileMenu.min',
-			'Popup.min',
-			'svg4everybody.min',
-			'main'
-		];
-
-  foreach ( $scripts as $script_name ) {
-    wp_enqueue_script( "{$script_name}", get_template_directory_uri() . "/js/{$script_name}.js", [], null );
-  }
-
-  // Отключаем стандартные jquery, jquery-migrate
-  // лучше подключать свой jquery
-  wp_deregister_script( 'jquery-core' );
-  wp_deregister_script( 'jquery' );
-
-  // Подключаем свой jquery
-  wp_register_script( 'jquery-core', get_template_directory_uri() . '/js/jquery-3.4.1.min.js', false, null, true );
-  wp_register_script( 'jquery', false, ['jquery-core'], null, true );
-  wp_enqueue_script( 'jquery' );
-
-} );
-
-// Убираем id и type в тегах script, добавляем нужным атрибут defer
-  add_filter('script_loader_tag',   function( $html, $handle ) {
-
-    $defer_scripts = [
-				'slick.min',
-			'jquery.validate.min',
-			'lazy.min',
-			'MobileMenu.min',
-			'Popup.min',
-			'svg4everybody.min',
-			'main'
-		];
-
-    foreach( $defer_scripts as $id ) {
-      if ( $id === $handle ) {
-        $html = str_replace( ' src', ' defer src', $html );
-      }
-    }
-
-    $html = str_replace( " id='$handle-js' ", '', $html );
-    $html = str_replace( " type='text/javascript'", '', $html );
-
-     return $html;
-  }, 10, 2);
-
-// Убираем id и type в тегах style
-  add_filter( 'style_loader_tag', function( $html, $handle ) {
-    $html = str_replace( " id='$handle-css' ", '', $html );
-    $html = str_replace( " type='text/css'", '', $html );
-    return $html;
-  }, 10, 2 );
- /* Настройка контактов в панели настройки->общее */
-// Функции вывода нужных полей
-  function options_inp_html ( $id ) {
-    echo "<input type='text' name='{$id}' value='" . esc_attr( get_option( $id ) ) . "'>";
-  }
-
-  add_action( 'admin_init', function() {
-    $options = [
-      'tel'     =>  'Телефон',
-      'address' =>  'Адрес',
-      'email'   =>  'E-mail',
-      'coords'  =>  'Координаты маркера на карте',
-      'zoom'    =>  'Увеличение карты'
-    ];
-
-    foreach ($options as $id => $name) {
-      $my_id = "contacts_{$id}";
-
-      add_settings_field( $id, $name, 'options_inp_html', 'general', 'default', $my_id );
-      register_setting( 'general', $my_id );
-    }
-  } );
-
-// Меню на сайте
-  add_action( 'after_setup_theme', function() {
-    register_nav_menus( [
-      'header_menu' =>  'Меню в шапке сайта',
-      'mobile_menu' =>  'Мобильное меню на сайте',
-      'footer_menu' =>  'Меню в подвале сайта'
-    ] );
-  } );
-
-// добавить класс для ссылки в меню (a)
-  add_filter( 'nav_menu_link_attributes', function( $atts, $item ) {
-    $atts['class'] = 'nav__link';
-    return $atts;
-  }, 10, 2);  
-
-// задать свои классы для пунктов меню (li)
-  add_filter( 'nav_menu_css_class', function( $classes, $item, $args, $depth ) {
-    $classesArray = ['nav__list-item'];
-
-    foreach ( $classes as $class ) {
-      if ( $class === 'current-menu-item' ) {
-        $classesArray[] = 'current';
-      }
-    }
-    return $classesArray;
-  }, 10, 4);
-
-// убрать id у пунктов меню
-  add_filter( 'nav_menu_item_id', function( $menu_id, $item, $args, $depth ) {
-    return '';
-  }, 10, 4);
-
-// переименовать рубрики в категории
-add_filter( 'taxonomy_labels_'.'category', function( $labels ) {
-
-  // Запишем лейблы для изменения в виде массива для удобства
-  $my_labels = [
-    'name'                  => 'Категории',
-    'singular_name'         => 'Категория',
-    'search_items'          => 'Поиск категорий',
-    'all_items'             => 'Все категории',
-    'parent_item'           => 'Родительская категория',
-    'parent_item_colon'     => 'Родительская категория:',
-    'edit_item'             => 'Изменить категорию',
-    'view_item'             => 'Просмотреть категорию',
-    'update_item'           => 'Обновить категорию',
-    'add_new_item'          => 'Добавить новую категорию',
-    'new_item_name'         => 'Название новой категории',
-    'not_found'             => 'Категории не найдены',
-    'no_terms'              => 'Категорий нет',
-    'items_list_navigation' => 'Навигация по списку категорий',
-    'items_list'            => 'Список категорий',
-    'back_to_items'         => '← Назад к категориям',
-    'menu_name'             => 'Категории',
-  ];
-
-  return $my_labels;
-} );
-
+add_action( 'wp_ajax_nopriv_loadsingles', 'load_singles' ); 
+add_action( 'wp_ajax_loadsingles', 'load_singles' );

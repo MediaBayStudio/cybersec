@@ -65,6 +65,8 @@ body.no-scroll {
   }
 }
 
+
+.searchwp-live-search-instructions,
 div.wpcf7-response-output,
 span.wpcf7-not-valid-tip,
 .screen-reader-response,
@@ -73,3 +75,7 @@ span.wpcf7-not-valid-tip,
   display: none !important;
 }
 
+// .search-popup {
+//   visibility: visible !important;
+//   opacity: 1 !important;
+// }

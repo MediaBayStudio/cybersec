@@ -22,4 +22,27 @@
       font-size: 17.5px;
     }
   }
+  &__descr {
+    max-width: 500px;
+    font-size: 24px;
+    .php,
+    .quote {
+      font-size: 17.5px;
+    }
+  }
+  &-decor {
+    top: 25%;
+    left: -85px;
+    width: 1000px;
+  }
+}
+
+#category {
+  > .hero-sect {
+    > .hero-sect__title {
+       > .text {
+        margin: 15px 0;
+      }
+    }
+  }
 }

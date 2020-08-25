@@ -20,6 +20,16 @@
       }
     }
   }
+  &__descr {
+    max-width: 750px;
+    font-size: 27px;
+  }
+  &-decor {
+    top: 15%;
+    // left: 100px;
+    left: responsive('1440->1920', '100->310');
+    width: 1250px;
+  }
 }
 
 #emoji {

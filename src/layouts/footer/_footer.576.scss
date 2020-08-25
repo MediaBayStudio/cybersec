@@ -4,8 +4,10 @@
 @import '../../scss/assets/variables';
 
 .ftr {
-  &__logo {
+  &-decor {
+    right: responsive('576->767', '20->115');
   }
+  &__logo 
   &__logo-img {
   }
   &__copy {

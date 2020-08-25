@@ -12,6 +12,8 @@
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  position: relative;
+  z-index: 1;
   &__nav {
     display: none;
   }
@@ -24,10 +26,17 @@
   }
 }
 
-#hdr__search {
-  margin: 0 15px 0 auto;
+.search-icon {
   width: 20px;
   height: 20px;
+  pointer-events: none;
+  fill: inherit;
+  stroke: inherit;
+  transition: fill .35s, stroke .35s;
+}
+
+#search-btn {
+  margin: 0 15px 0 auto;
   stroke: $lightgrey;
   fill: none;
 }

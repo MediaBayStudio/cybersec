@@ -2,3 +2,42 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-hero-sect {
+  padding-top: 60px;
+  padding-bottom: 90px;
+  position: relative;
+  z-index: 0;
+  background: #F2F5F4;
+  &::before {
+    content: attr(data-heading);
+    max-width: 280px;
+    display: block;
+    position: absolute;
+    bottom: 280px;
+    left: 50%;
+    transform: translateX(-50%);
+    font: 84px/143% PressStart2P;
+    text-transform: uppercase;
+    text-align: right;
+    color: #B7BEB2;
+    z-index: -1;
+  }
+  &__title {
+    margin-bottom: 40px;
+    font: bold 22px/140% AnonymousPro;
+    color: #2D2D2D;
+  }
+  &__text {
+    font: 14px/140% Montserrat;
+    color: #555B55;
+  }
+  &__descr {
+    margin-bottom: 30px;
+  }
+  &__figure {
+    margin: 210px auto 0;
+    width: 280px;
+    display: block;
+  }
+}

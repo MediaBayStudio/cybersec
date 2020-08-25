@@ -6,6 +6,10 @@
 .ftr {
   padding: 65px responsive('1024->1439', '42->249.500') 55px 20px;
   font-size: 16px;
+  &-decor {
+    width: 90%;
+    right: responsive('1024->1439', '20->40');
+  }
   &__logo {
 
   }
@@ -37,6 +41,18 @@
     }
     &-link {
       
+    }
+  }
+  &-with-nav {
+    padding: 65px calc(50% - 470px) 55px;
+    > .ftr-decor {
+      width: 920px;
+      top: 50px;
+      right: responsive('1024->1439', '50->250');
+    }
+    > .ftr__nav,
+    > .ftr__menu {
+      font-size: 16px;
     }
   }
 }

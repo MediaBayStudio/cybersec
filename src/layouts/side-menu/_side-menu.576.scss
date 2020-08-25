@@ -12,6 +12,7 @@
   background: $black;
   grid-column: 1;
   grid-row: 1/span 2;
+  position: relative;
   &__logo {
     display: none;
     // width: 180px;
@@ -25,15 +26,34 @@
     > .side-menu__logo {
       display: block;
     }
+    > .side-menu-decor {
+      display: none;
+    }
   }
   &__nav {
     margin-right: 40px;
     padding: 0 0 40px;
     border-bottom: 1px solid;
-  }
-  .nav__list-item {
-    &:nth-last-child(n+2) {
-      margin-bottom: 30px;
+    > .nav__list {
+      > .current {
+        > .nav__link {
+          border-bottom-color: $blue;
+          pointer-events: none;
+          color: $blue;
+        }
+      }
+      > .nav__list-item {
+        &:nth-last-child(n+2) {
+          margin-bottom: 30px;
+        }
+      }
     }
   }
+}
+
+.side-menu-decor {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  pointer-events: none;
 }

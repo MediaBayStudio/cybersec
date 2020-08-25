@@ -7,6 +7,11 @@
   //   clearTimeout(thanksPopupTimer);
   // });
 
+  searchPopup = new Popup('.search-popup', {
+    openButtons: '#search-btn',
+    closeButtons: '.search-popup__close'
+  });
+
 // Закрытие всех попапов вместе с закрытием окна спасибо
   // thanksPopup.addEventListener('popupbeforeclose', function() {
   //   let otherPopups = [callbackPopup, orderPopup];

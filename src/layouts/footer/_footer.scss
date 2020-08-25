@@ -12,6 +12,17 @@
   background: #2d2c2c;
   font: 16px/160% AnonymousPro;
   text-align: center;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  &-decor {
+    position: absolute;
+    // right: 20px;
+    right: responsive('320->575', '20->155');
+    pointer-events: none;
+    top: 25px;
+    z-index: -1;
+  }
   &__logo {
     width: 145px;
     margin-bottom: 35px;
@@ -41,13 +52,17 @@
     }
   }
   &__menu-link {
-
+    border-bottom: 1px solid transparent;
+    transition: border-bottom-color .35s, color .35s;
   }
   &__nav {
     margin: auto;
     width: 230px;
     font-weight: bold;
     text-align: left;
+    .front-page-list-item {
+      display: none;
+    }
     .nav__list-item {
       margin-bottom: 5px;
     }
@@ -88,6 +103,11 @@
       font: bolder 16px/100% SegoeUI;
       letter-spacing: 0.08em;
       transition: color .35s;
+    }
+  }
+  &-with-nav {
+    .front-page-list-item {
+      display: block;
     }
   }
 }

@@ -10,6 +10,21 @@
   padding-right: responsive('576->767', '20->115.500');
 }
 
+#category {
+  > .articles-wrapper {
+    > .articles-content {
+      > .articles-sect 
+        > .articles {
+          padding-right: responsive('576->767', '20->115.500');
+        }
+    }
+  }
+}
+
+#category .articles-sect__row {
+  margin-right: responsive('576->767', '20->115.500');
+}
+
 .single {
   &:nth-last-child(n+2) {
   }

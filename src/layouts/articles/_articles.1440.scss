@@ -18,6 +18,20 @@
   }
 }
 
+#category 
+  > .articles-wrapper 
+    > .articles-content 
+      > .articles-sect
+        > .articles {
+          padding-right: responsive('1440->2560', '102->654.500');
+          padding-left: 105px;
+        }
+
+#category .articles-sect__row {
+  margin-left: 105px;
+  margin-right: responsive('1440->2560', '102->654.500');
+}
+
 .single {
   width: 427px;
   &:nth-last-child(n+1) {

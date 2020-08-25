@@ -18,6 +18,18 @@
   }
 }
 
+#category 
+  > .articles-wrapper 
+    > .articles-content 
+      > .articles-sect 
+        > .articles {
+          padding-right: responsive('1024->1439', '42->249.500');
+        }
+
+#category .articles-sect__row {
+  margin-right: responsive('1024->1439', '42->249.500');
+}
+
 .single {
   width: 320px;
   // break-inside: avoid;
@@ -28,6 +40,10 @@
     width: 320px;
     height: 320px;
   }
+}
+
+.sort {
+  font-size: 16px;
 }
 
 #fresh,

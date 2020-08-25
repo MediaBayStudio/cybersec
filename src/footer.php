@@ -1,5 +1,11 @@
-<?php global $template_directory ?>
-<footer class="ftr">
+<?php global $template_directory;
+  if ( $is_category || $is_front_page ) {
+    $ftr_class = '';
+  } else {
+    $ftr_class = ' ftr-with-nav';
+  } ?>
+<footer class="ftr<?php echo $ftr_class ?>">
+  <img src="#" data-src="<?php echo $template_directory ?>/img/ftr-decor.320.svg" alt="Декор" class="ftr-decor lazy" data-media="(min-width:767.98px){<?php echo $template_directory ?>/img/ftr-decor.768.svg} (min-width:1023.98px){<?php echo $template_directory ?>/img/ftr-decor.1439.svg} (min-width:1023.98px){<?php echo $template_directory ?>/img/ftr-decor.1440.svg}">
   <a href="/" class="ftr__logo">
     <img src="<?php echo $template_directory . '/img/logo.png' ?>" alt="Логотип CyberSec" title="На главную" class="ftr__logo-img">
   </a>
@@ -11,7 +17,7 @@
   if ( $categories ) : ?>
     <menu class="ftr__menu"> <?php
   endif;
-  foreach ( $categories as $category ) : ?>
+  foreach ( $categories as $category ) : if ( $category->slug === 'hot' ) continue ?>
       <li class="ftr__menu-item">
         <a href="<?php echo get_term_link( $category ) ?>" class="ftr__menu-link"><?php echo $category->name ?></a>
       </li> <?php
@@ -46,10 +52,7 @@
     </div>
   </div>
 </footer>
-<?php
-wp_footer();
-require 'layouts/overlay/overlay.php';
-require 'layouts/search-popup/search-popup.php';
-require 'layouts/thanks-popup/thanks-popup.php' ?>
+<div id="fake-scrollbar"></div> <?php
+wp_footer() ?>
 <!-- 	</body>
 </html> -->

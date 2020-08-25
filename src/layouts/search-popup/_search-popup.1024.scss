@@ -2,3 +2,49 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.search-popup {
+  padding: 30px;
+  &__cnt {
+    max-width: 650px;
+  }
+  &__close {
+    top: 30px;
+    right: 30px;
+  }
+}
+.close-icon {
+}
+.search {
+}
+.search-icon {
+}
+.search-results {
+  padding-right: 30px;
+  &__article {
+  }
+}
+.article {
+  &__categories {
+  }
+  &__category {
+  }
+  &__title {
+  }
+  &__title-link {
+  }
+  &__excerpt {
+  }
+  &__row {
+  }
+  &__link {
+  }
+  &__date {
+  }
+}
+.hot-icon {
+}
+
+.searchwp-live-search-results {
+  padding-right: 30px;
+}
