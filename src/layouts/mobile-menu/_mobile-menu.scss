@@ -91,7 +91,7 @@
     max-height: calc(var(--vh, 1vh) * 100);
     height: 100vh;
     padding: 20px 20px;
-    background: $black;
+    background: url('../img/mobile-menu-bg.svg') 0 0/cover no-repeat $black;
     color: $white;
     overflow: auto;
     font: 16px/160% AnonymousPro;
@@ -104,6 +104,9 @@
   &__logo {
     width: 110px;
     flex-shrink: 0;
+    &-img {
+      flex-shrink: 0;
+    }
   }
   &__menu {
     margin: 10px 0;

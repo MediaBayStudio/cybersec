@@ -18,6 +18,11 @@
   }
 }
 
+.tags-error {
+  padding-left: 105px;
+  padding-right: responsive('1440->2560', '102->654.500');
+}
+
 #category 
   > .articles-wrapper 
     > .articles-content 

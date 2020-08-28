@@ -37,8 +37,5 @@
       window.addEventListener('scroll', fixSideMenu);
       fixSideMenu();
 
-
-    console.log(sideMenu);
-    console.log(sideMenuClone);
   }
 })();

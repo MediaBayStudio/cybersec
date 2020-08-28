@@ -2,3 +2,63 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-sect {
+  padding-bottom: 50px;
+  background: #f2f5f4;
+  font: 14px/143% Montserrat;
+  color: #555b55;
+  &__heading-block {
+    display: none;
+  }
+  &__title {
+
+  }
+  &__descr {
+    margin-bottom: 35px;
+  }
+}
+
+.about-sect__title,
+.about-sect__faq-title {
+  display: block;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font: bold 20px/140% AnonymousPro;
+  color: #2d2d2d;
+  border-bottom: 1px solid;
+  letter-spacing: 0.05em;
+}
+
+.faq {
+  overflow: hidden;
+  transition: max-height .5s, margin .5s;
+  will-change: max-height, height;
+  margin-bottom: 40px;
+  &.active {
+    > .faq__question {
+      &::before {
+        content: '–';
+      }
+    }
+  }
+  &__question {
+    display: flex;
+    align-items: flex-start;
+    font: 600 16px/143% Montserrat;
+    text-align: left;
+    color: #2D2D2D;
+    transition: color .5s;
+    &::before {
+      content: '+';
+      display: inline-block;
+      margin-right: 15px;
+      min-width: 10px;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+  }
+  &__answer {
+    padding: 20px 0 0 25px;
+  }
+}

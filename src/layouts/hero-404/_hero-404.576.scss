@@ -2,3 +2,37 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.sect-404 {
+  padding-bottom: 135px;
+  &__decor {
+    left: -5%;
+  }
+  &__img {
+    width: 400px;
+  }
+  &__title {
+    max-width: 320px;
+    font-size: 15px;
+    > .php {
+    }
+    .echo {
+    }
+    > .text {
+      font-size: 30px;
+    }
+    > .quote {
+    }
+  }
+  &__descr {
+    max-width: 375px;
+    font-size: 15px;
+    > .text {
+      font-size: 17px;
+    }
+    > .quote {
+    }
+  }
+  &__btn {
+  }
+}

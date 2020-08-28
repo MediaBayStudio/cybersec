@@ -2,3 +2,18 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+
+.thanks-popup {
+  &__cnt {
+
+  }
+  &__close {
+    width: 20px;
+    height: 20px;
+    fill: #f2f5f4;
+    top: -30px;
+    right: -30px;
+    transition: transform .25s;
+  }
+}

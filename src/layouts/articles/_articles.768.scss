@@ -6,19 +6,21 @@
 
 .articles {
   &-sect {
+    min-height: 350px;
     padding-top: 75px;
   }
   &-wrapper {
     grid-template-columns: responsive('768->1023', '260->384') auto;
   }
   &-sect {
-    padding-right: responsive('768->1023', '41->168.500');
     &__title {
       font-size: 20px;
     }
   }
 }
-
+.articles-sect {
+  padding-right: responsive('768->1023', '41->168.500');
+}
 .articles-sect,
 #category 
   > .articles-wrapper 
@@ -27,6 +29,10 @@
         > .articles {
           padding-right: responsive('768->1023', '41->168.500');
         }
+
+.tags-error {
+  padding-right: responsive('768->1023', '41->168.500');
+}
 
 #category .articles-sect__row {
   margin-right: responsive('768->1023', '41->168.500');

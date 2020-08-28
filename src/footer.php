@@ -1,11 +1,20 @@
-<?php global $template_directory;
+<?php
+  global
+    $body_id,
+    $site_url,
+    $template_directory,
+    $current_category,
+    $is_category,
+    $is_front_page,
+    $categories,
+    $queried_object;
   if ( $is_category || $is_front_page ) {
     $ftr_class = '';
   } else {
     $ftr_class = ' ftr-with-nav';
   } ?>
 <footer class="ftr<?php echo $ftr_class ?>">
-  <img src="#" data-src="<?php echo $template_directory ?>/img/ftr-decor.320.svg" alt="Декор" class="ftr-decor lazy" data-media="(min-width:767.98px){<?php echo $template_directory ?>/img/ftr-decor.768.svg} (min-width:1023.98px){<?php echo $template_directory ?>/img/ftr-decor.1439.svg} (min-width:1023.98px){<?php echo $template_directory ?>/img/ftr-decor.1440.svg}">
+  <img src="#" data-src="<?php echo $template_directory ?>/img/ftr-decor.320.svg" alt="Декор" class="ftr-decor lazy" data-media="(min-width:767.98px){<?php echo $template_directory ?>/img/ftr-decor.768.svg} (min-width:1023.98px){<?php echo $template_directory ?>/img/ftr-decor.1024.svg} (min-width:1439.98px){<?php echo $template_directory ?>/img/ftr-decor.1440.svg}">
   <a href="/" class="ftr__logo">
     <img src="<?php echo $template_directory . '/img/logo.png' ?>" alt="Логотип CyberSec" title="На главную" class="ftr__logo-img">
   </a>

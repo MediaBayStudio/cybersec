@@ -11,12 +11,12 @@
   color: $white;
   background: $black;
   grid-column: 1;
-  grid-row: 1/span 2;
+  grid-row: 1;
   position: relative;
   &__logo {
     display: none;
     // width: 180px;
-    margin: 0 40px 30px 0;
+    margin: 0 40px 75px 0;
   }
   &.fixed {
     position: fixed;
@@ -36,9 +36,10 @@
     border-bottom: 1px solid;
     > .nav__list {
       > .current {
+        cursor: auto;
         > .nav__link {
           border-bottom-color: $blue;
-          pointer-events: none;
+          pointer-events: auto;
           color: $blue;
         }
       }

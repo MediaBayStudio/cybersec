@@ -76,7 +76,7 @@
 
       $element.style.transform = 'translate3d(' + posX + 'px, ' + posY + 'px, 0px)';
     },
-    decorElements = getElements('.php, .quote, .side-menu-decor, .hero-sect-decor, .ftr-decor');
+    decorElements = getElements('.php, .quote, .side-menu-decor, .hero-sect-decor, .ftr-decor, .sect-404__decor, .contacts-decor');
 
   initParallaxFunc();
 
@@ -84,13 +84,12 @@
 
   if (sideMenu) {
     sideMenu.addEventListener('fixed', function() {
-      decorElements = getElements('.php, .quote, .side-menu-decor, .hero-sect-decor, .ftr-decor');
+      decorElements = getElements('.php, .quote, .side-menu-decor, .hero-sect-decor, .ftr-decor, .sect-404__decor');
       initParallaxFunc();
-      console.log(decorElements);
     });
 
     sideMenu.addEventListener('unfixed', function() {
-      decorElements = getElements('.php, .quote, .side-menu-decor, .hero-sect-decor, .ftr-decor');
+      decorElements = getElements('.php, .quote, .side-menu-decor, .hero-sect-decor, .ftr-decor, .sect-404__decor');
       initParallaxFunc();
     });
   }

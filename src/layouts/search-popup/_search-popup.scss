@@ -4,18 +4,6 @@
 @import '../../scss/assets/variables';
 
 .search-popup {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-  background: transparentize(#303030, .05);
-  color: $white;
-  z-index: 2;
   &__cnt {
     display: flex;
     flex-flow: column;
@@ -26,9 +14,11 @@
   &__close {
     margin: 0 0 35px auto;
     fill: $white;
+    transition: transform .35s;
     > .close-icon {
       width: 20px;
       height: 20px;
+      pointer-events: none;
     }
   }
 }
@@ -43,7 +33,7 @@
   font: bold 18px/100% AnonymousPro;
   box-sizing: border-box;
   &::placeholder {
-    color: inherit;
+    color: rgba(255,255,255,.5)
   }
 }
 
@@ -74,6 +64,10 @@
     &__article {
     }
   }
+}
+
+.searchwp-live-search-no-results {
+  font: 15px/140% Montserrat;
 }
 
 .searchwp-live-search-results {
@@ -115,7 +109,7 @@
     margin-bottom: 15px;
     font: bold 18px/140% AnonymousPro;
     &-link {
-      display: inline-block;
+      display: inline;
     }
   }
   &__excerpt {
@@ -134,4 +128,10 @@
     margin: 0 0 0 auto;
     color: $grey;
   }
+}
+
+.article__title-text,
+.article__link {
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color .35s;
 }

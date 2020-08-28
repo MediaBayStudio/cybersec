@@ -4,6 +4,9 @@
 @import '../../scss/assets/variables';
 
 .hdr {
+  &.fixed {
+    display: none;
+  }
   &__logo {
     &-img {
       width: 120px;

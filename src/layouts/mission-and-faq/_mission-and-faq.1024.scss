@@ -2,3 +2,15 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-sect {
+  &__heading-block {
+    padding-right: 200px;
+  }
+  &__title {
+
+  }
+  &__descr {
+
+  }
+}

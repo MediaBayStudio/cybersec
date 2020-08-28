@@ -2,3 +2,44 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.sect-404 {
+  padding-top: 75px;
+  padding-bottom: 155px;
+  &__decor {
+    top: 150px;
+  }
+  &__img {
+    width: 592px;
+    margin: 0;
+  }
+  &__title {
+    max-width: 380px;
+    font-size: 23px;
+    > .php {
+    }
+    > .echo {
+    }
+    > .text {
+      margin: 20px 0 0;
+      font-size: 36px;
+    }
+    > .quote {
+    }
+  }
+  &__descr {
+    max-width: 400px;
+    font-size: 23px;
+    > .text {
+      font-size: 18px;
+      > .br {
+        display: block;
+      }
+    }
+    > .quote {
+    }
+  }
+  &__btn {
+    margin: 50px 0 0;
+  }
+}

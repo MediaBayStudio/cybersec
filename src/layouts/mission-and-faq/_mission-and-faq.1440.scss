@@ -2,3 +2,24 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-sect {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  &__heading-block {
+    padding-right: 15px;
+
+  }
+  &__title {
+
+  }
+  &__descr {
+
+  }
+  &__text-block,
+  &__faq {
+    margin-top: 0;
+    max-width: 580px;
+  }
+}

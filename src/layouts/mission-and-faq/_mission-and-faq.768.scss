@@ -2,3 +2,21 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-sect {
+  font-size: 16px;
+  &__heading-block {
+
+  }
+  &__descr {
+
+  }
+  &__faq {
+    margin-top: 60px;
+  }
+}
+
+.about-sect__title,
+.about-sect__faq-title {
+  font-size: 24px;
+}

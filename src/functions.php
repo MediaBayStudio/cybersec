@@ -273,6 +273,9 @@ add_filter( 'intermediate_image_sizes', function ( $sizes ){
   ] );
 } );
 
+add_image_size( 'post_thumbnail_big',    815, 570, true );
+add_image_size( 'post_thumbnail_medium', 690, 480, true );
+
 function kama_excerpt( $args = '' ){
   global $post;
 
@@ -344,11 +347,13 @@ function load_singles() {
   $post_sort = $_POST['sort'];
   $post_cat = $_POST['category'];
   $post_tag = $_POST['tag'];
+  $posts_offset = $_POST['offset'];
 
   if ( $post_sort ) {
 
     if ( $post_tag ) {
       $tag = $post_tag;
+      $current_tags = explode( ', ', $tag );
     } else {
       $tag = '';
     }
@@ -359,20 +364,34 @@ function load_singles() {
       $cat = $post_cat;
     }
 
+    if ( is_null( $posts_offset ) ) {
+      $posts_offset = 0;
+    }
+
     $posts = get_posts( [
       'numberposts' => 12,
       'order' => $post_sort,
       'tag' => $tag,
-      'category' => $cat
+      'category' => $cat,
+      'offset'  => $posts_offset
     ] );
+
+    if ( $current_tags ) {
+      $posts_count = 0;
+      foreach ( $current_tags as $current_tag ) {
+        $tag_count = get_term_by( 'slug', $current_tag, 'post_tag' ) ->count;
+        $posts_count += $tag_count;
+      }
+    }
 
     $articles = '';
 
     if ( $posts ) {
       $i = 0;
       foreach ( $posts as $post ) :
+        $data_attr = $i === 0 && $posts_count ? ' data-posts-count-by-tags="' . $posts_count . '"' : '';
         if ( $i % 4 === 0 ) {
-          $articles .= '<div class="articles">';
+          $articles .= '<div class="articles"' . $data_attr . '>';
         }
         $href = get_the_permalink( $post );
         $title = get_the_title( $post );
@@ -408,7 +427,7 @@ function load_singles() {
         if ( has_post_thumbnail( $post ) ) {
           $thumbnail = '
           <a href="<?php echo $href ?>" class="single__thumb">
-            <img src="#" data-src="' . get_the_post_thumbnail_url( $post ) . '" alt="' . $title . '" class="single__img lazy">
+            <img src="' . get_the_post_thumbnail_url( $post ) . '" alt="' . $title . '" class="single__img">
           </a>';
         }
 
@@ -450,3 +469,10 @@ function load_singles() {
 
 add_action( 'wp_ajax_nopriv_loadsingles', 'load_singles' ); 
 add_action( 'wp_ajax_loadsingles', 'load_singles' );
+
+      /* Contact Form 7 */
+// Отключаем весь css-файл CF7
+  add_filter( 'wpcf7_load_css', '__return_false' );
+
+// Отключаем генерацию некоторых лишнех тегов
+  add_filter( 'wpcf7_autop_or_not', '__return_false' );

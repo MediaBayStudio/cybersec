@@ -6,6 +6,12 @@
 #front-page {
   > .articles-wrapper {
     > .articles-content {
+      display: flex;
+      flex-flow: column;
+      #hot,
+      #fresh {
+        order: -1;
+      }
       > .articles-sect {
         &:nth-of-type(3),
         &:nth-of-type(6),
@@ -55,7 +61,7 @@
 
 
 #category {
-  .articles:nth-child(1) {
+  .articles:nth-child(3n+1) {
     > .single {
       &:nth-child(2),
       &:nth-child(3) {
@@ -81,7 +87,7 @@
       }
     }
   }
-  .articles:nth-child(2) {
+  .articles:nth-child(3n+2) {
     > .single {
       &:nth-child(3),
       &:nth-child(4) {
@@ -107,7 +113,7 @@
       }
     }
   }
-  .articles:nth-child(3) {
+  .articles:nth-child(3n+3) {
     > .single {
       &:nth-child(1),
       &:nth-child(4) {
@@ -178,8 +184,9 @@
 }
 
 .tags-error {
-  font: 16px/140% Montserrat;
+  font: 14px/140% Montserrat;
   color: $black;
+  padding: 0 20px;
 }
 
 
@@ -341,7 +348,7 @@
 
 #fresh {
   .single {
-    &:first-child {
+    &:nth-child(1) {
       .single__thumb {
         display: block;
       }
@@ -350,15 +357,19 @@
 }
 
 #hot {
-  .hot-icon {
-    display: block;
-    width: 17px;
-    height: 20px;
-    margin-left: 8px;
+  .single__categories {
+    &::after {
+      content: '';
+      display: block;
+      width: 17px;
+      height: 20px;
+      margin-left: 8px;
+      background: url('../img/icon-hot.svg') center/contain no-repeat;
+    }
   }
   .single {
-    &:first-child,
-    &:last-child {
+    &:nth-child(1),
+    &:nth-child(4) {
       .single__thumb {
         display: block;
       }
@@ -366,10 +377,10 @@
   }
 }
 
-#news {
+#anews {
   .single {
     &:nth-child(2),
-    &:last-child {
+    &:nth-child(4) {
       .single__thumb {
         display: block;
       }
@@ -390,7 +401,7 @@
 
 #coding {
   .single {
-    &:last-child {
+    &:nth-child(4) {
       .single__thumb {
         display: block;
       }
@@ -401,7 +412,7 @@
 #hack {
   .single {
     &:nth-child(2),
-    &:last-child {
+    &:nth-child(4) {
       .single__thumb {
         display: block;
       }
@@ -422,7 +433,7 @@
 
 #gadgets {
   .single {
-    &:first-child {
+    &:nth-child(1) {
       .single__thumb {
         display: block;
       }
@@ -433,7 +444,7 @@
 #books {
   .single {
     &:nth-child(2),
-    &:last-child {
+    &:nth-child(4) {
       .single__thumb {
         display: block;
       }
@@ -444,7 +455,7 @@
 #fuckery {
   .single {
     &:nth-child(2),
-    &:last-child {
+    &:nth-child(4) {
       .single__thumb {
         display: block;
       }
@@ -465,7 +476,7 @@
 
 #soft {
   .single {
-    &:first-child {
+    &:nth-child(1) {
       .single__thumb {
         display: block;
       }
@@ -476,7 +487,7 @@
 #diy {
   .single {
     &:nth-child(2),
-    &:last-child {
+    &:nth-child(4) {
       .single__thumb {
         display: block;
       }

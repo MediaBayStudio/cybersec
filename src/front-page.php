@@ -1,7 +1,6 @@
 <?php
 
 require 'layouts/globals.php';
-
 get_header();
 
 require 'layouts/hero/hero.php';

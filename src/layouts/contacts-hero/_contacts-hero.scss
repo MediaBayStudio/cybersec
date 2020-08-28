@@ -2,3 +2,115 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.contacts-wrapper {
+  background: url(../img/contacts-pattern.svg) 0 0/cover no-repeat #f2f5f4;
+  position: relative;
+  overflow: hidden;
+}
+
+.contacts-decor {
+  max-width: 800px;
+  position: absolute;
+  top: 140px;
+  left: -25px;
+  pointer-events: none;
+}
+
+.contacts-sect {
+  padding-top: 65px;
+  padding-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  // background: #F2F5F4;
+  &__title {
+  }
+  &__list {
+    padding-left: 85px;
+    font: 600 18px/100% Montserrat;
+    color: #2D2D2D;
+  }
+  &__list-item {
+    position: relative;
+    margin-bottom: 30px;
+    &::before {
+      content: attr(data-title);
+      margin-bottom: 12px;
+      display: block;
+      font-size: 15px;
+      font-weight: normal;
+      color: #B7BEB2;
+    }
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 9px;
+      left: -85px;
+      width: 50px;
+      height: 1px;
+      min-height: 1px;
+      max-height: 1px;
+      background: #B7BEB2;
+    }
+  }
+}
+
+.contacts-sect__title,
+.feedback-form__title {
+  margin-bottom: 35px;
+  font: bold 22px/140% AnonymousPro;
+}
+
+.feedback-form-container {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 1;
+  // background: #F2F5F4;
+}
+
+.feedback-form {
+  &__title {
+  }
+  .field {
+    &__textarea {
+      height: 165px;
+    }
+    &__inp {
+    }
+    &__text {
+    }
+  }
+
+  .field_name {
+    margin-bottom: 20px;
+  }
+  .field_email {
+    margin-bottom: 20px;
+  }
+  .field_msg {
+    margin-bottom: 15px;
+  }
+  .form {
+    &__bottom {
+    }
+  }
+
+  .check {
+    &__inp {
+    }
+    &__pseudo-inp {
+    }
+    &__text {
+    }
+    &__link {
+    }
+  }
+  .btn {
+    margin: 40px auto 0;
+    display: flex;
+    width: 196px;
+    height: 40px;
+  }
+}

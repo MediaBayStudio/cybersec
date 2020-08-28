@@ -22,11 +22,15 @@
   <div class="articles-content"> <?php
   if ( is_page( 'category' ) ) {
     $is_category = true;
+    $is_category_page = true;
   }
   if ( $is_category ) {
     $numberposts = 12;
     $category_slug = $queried_object->slug;
-    $sect_id = '';
+    $category_id = $is_category_page ? 0 : $queried_object->term_id;
+    $category_count = $is_category_page ? wp_count_posts()->publish : $queried_object->count;
+
+    $sect_id = 'data-category-id="' . $category_id . '" data-posts-count="' . $category_count . '"';
     $sect_title = $queried_object->name;
 
     $posts = get_posts( [

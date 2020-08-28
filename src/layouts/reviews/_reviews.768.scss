@@ -2,3 +2,35 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.reviews-sect {
+  &__heading-block {
+  }
+  &__title {
+  }
+  &__nav {
+  }
+  &__slider {
+    &.slick-slider {
+      
+    }
+  }
+}
+.reviews-sect__slider.slick-slider .review,
+.review {
+  width: 200px;
+  &:nth-last-child(n+2) {
+    margin-right: 40px;
+  }
+}
+
+.review {
+
+  &__img {
+    width: 160px;
+  }
+  &__title {
+  }
+  &__descr {
+  }
+}

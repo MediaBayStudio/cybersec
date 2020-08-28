@@ -26,7 +26,45 @@
         tagsStr += tagsText.join(', ');
 
         return tagsStr;
-      };
+      },
+      scollFunc = function() {
+        let doc = document.documentElement;
+        if ((doc.scrollHeight - doc.clientHeight <= window.pageYOffset + 500) && !inProgress) {
+          articlesSect.classList.add('loading');
+          inProgress = true;
+          let tagsStr = formingTagsQuery() || '',
+            sortParam = 'sort=' + q('.selected', sortList).dataset.value,
+            xhr = new XMLHttpRequest(),
+            data = 'action=loadsingles&' + sortParam + '&category=' + categoryId + '&offset=' + existsPostsCount;
+
+          data += tagsStr;
+
+          xhr.open('POST', siteurl + '/wp-admin/admin-ajax.php');
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          xhr.send(data);
+
+          xhr.addEventListener('readystatechange', function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              // console.log(xhr.response);
+              articlesSectRow.insertAdjacentHTML('beforebegin', xhr.response);
+              articlesBlocks = qa('.articles', articlesSect);
+              existsPostsCount = qa('.single', articlesSect).length;
+              if (totalPostsCount <= existsPostsCount) {
+                window.removeEventListener('scroll', scollFunc);
+              } else {
+                inProgress = false;
+              }
+              lazy.refresh();
+              articlesSect.classList.remove('loading');
+            }
+          });
+        }
+      },
+      scrollListenerParams = !!Array.of && { passive: !0 },
+      inProgress = false,
+      totalPostsCount = articlesSect.getAttribute('data-posts-count'),
+      existsPostsCount = qa('.single', articlesSect).length,
+      categoryId = articlesSect.getAttribute('data-category-id');
 
     sortList.children[0].classList.add('selected');
 
@@ -55,13 +93,18 @@
 
         xhr.addEventListener('readystatechange', function() {
           if (xhr.readyState === 4 && xhr.status === 200) {
-            // articlesBlocks.innerHTML = xhr.response;
             for (i = 0, len = articlesBlocks.length; i < len; i++) {
               articlesSect.removeChild(articlesBlocks[i]);
             }
             articlesSectRow.insertAdjacentHTML('beforebegin', xhr.response);
             articlesSect.classList.remove('loading');
-            articlesBlocks = qa('.articles', articlesSect)
+            articlesBlocks = qa('.articles', articlesSect);
+            existsPostsCount = qa('.single', articlesSect).length;
+            if (totalPostsCount <= existsPostsCount) {
+              window.removeEventListener('scroll', scollFunc);
+            } else {
+              inProgress = false;
+            }
           }
         });
 
@@ -120,6 +163,13 @@
             tagsStr = formingTagsQuery();
           }
 
+          if (tagsStr === '&tag=' || tagsStr === '') {
+            totalPostsCount = articlesSect.getAttribute('data-posts-count');
+            if (totalPostsCount > existsPostsCount) {
+              window.addEventListener('scroll', scollFunc, scrollListenerParams);
+            }
+          }
+
           data += tagsStr;
 
           xhr.open('POST', siteurl + '/wp-admin/admin-ajax.php');
@@ -128,14 +178,26 @@
 
           xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-              // articlesBlocks.innerHTML = xhr.response;
               for (i = 0, len = articlesBlocks.length; i < len; i++) {
                 articlesSect.removeChild(articlesBlocks[i]);
               }
               articlesSectRow.insertAdjacentHTML('beforebegin', xhr.response);
               articlesSect.classList.remove('loading');
               tagsBlock.classList.remove('active');
-              articlesBlocks = qa('.articles', articlesSect)
+              articlesBlocks = qa('.articles', articlesSect);
+              existsPostsCount = qa('.single', articlesSect).length;
+
+              let countByTags = q('[data-posts-count-by-tags]', articlesSect);
+
+              if (countByTags) {
+                totalPostsCount = countByTags.getAttribute('data-posts-count-by-tags');
+              }
+
+              if (totalPostsCount <= existsPostsCount) {
+                window.removeEventListener('scroll', scollFunc);
+              } else {
+                inProgress = false;
+              }
             }
           });
         }, 1000);
@@ -144,7 +206,12 @@
         tagsBlock.classList.toggle('active');
       }
     });
+
+  if (totalPostsCount > existsPostsCount) {
+    window.addEventListener('scroll', scollFunc, scrollListenerParams);
   }
+
+}
     
   
 })();

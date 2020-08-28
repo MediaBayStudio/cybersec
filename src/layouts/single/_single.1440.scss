@@ -2,3 +2,315 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+
+.breadcrumbs {
+  margin-bottom: 30px;
+  &__list {
+
+  }
+  &__item {
+    &.current {
+
+      > .breadcrumbs__link {
+
+        &::before {
+
+        }
+      }
+    }
+  }
+  &__link {
+  }
+}
+.article-sect,
+.single-sect__author-wrapper {
+  padding: 0 calc(50% - 408px);
+}
+.article-sect {
+
+  &__row {
+  
+  }
+  &__tags {
+
+  }
+  &__tag {
+  
+    &.last {
+   
+    }
+  }
+  &__date {
+
+  }
+  &__title {
+
+  }
+  &__excerpt {
+    margin-bottom: 45px;
+  }
+  &__share {
+
+    &-link {
+
+      &.last {
+
+      }
+      > .telegram {
+
+      }
+      > .vk {
+
+      }
+      > .facebook {
+
+      }
+    }
+
+  }
+  &__figure {
+
+  }
+  &__img {
+    height: 570px;
+  }
+}
+
+.articles-sect {
+  &__thumbnail-wrapper {
+  }
+}
+
+.single-sect {
+  &__author {
+
+    &-wrapper {
+
+    }
+    &-img {
+
+    }
+    &-text-block {
+
+    }
+    &-title {
+
+    }
+    &-position {
+
+    }
+    &-descr-block {
+
+    }
+    &-descr {
+
+    }
+    &-links {
+
+    }
+    &-link {
+
+      &.last {
+ 
+      }
+    }
+    &-svg {
+    }
+  }
+}
+
+/* COMMENTS */
+
+.comments {
+  &-area {
+
+  }
+  &-title {
+
+  }
+}
+
+.comment {
+  &:nth-child(n+2) {
+  }
+  &-list {
+    width: 700px;
+    .children {
+
+      .comment-body {
+  
+      }
+    }
+  }
+  &-body {
+    > .comment-content {
+
+    }
+    > p {
+
+    }
+    > .reply {
+      > .comment-reply-link {
+
+      }
+    }
+    .comment-edit-link {
+
+      &::after {
+
+      }
+      &::before {
+
+      }
+    }
+  }
+  &-author {
+
+    > .avatar,
+    > .says {
+
+    }
+
+    > .fn {
+
+      > a {
+
+      }
+    }
+  }
+  &-meta {
+
+    > .comment-metadata {
+
+    }
+  }
+
+  &-respond {
+    width: 495px;
+    padding: 35px 25px;
+    input, textarea {
+
+    }
+    textarea {
+
+    }
+    .comment-notes {
+
+    }
+    .comment-form-url,
+    .comment-form-cookies-consent {
+
+    }
+    .form-submit {
+      // margin: 25px 0 0 auto;
+      > .submit {
+
+      }
+    }
+  }
+  &-reply-title {
+
+  }
+  &-form {
+    
+    &-comment {
+      margin-bottom: 25px;
+      > label {
+
+      }
+    }
+    &-author {
+
+    }
+    &-email {
+
+    }
+    &-author,
+    &-email {
+      > label:not(.invalid) {
+
+      }
+      > input {
+
+      }
+    }
+  }
+}
+
+.logged-in-as {
+
+  > a {
+    &:last-child {
+
+    }
+  }
+}
+
+#comment {
+
+}
+
+
+.related-posts {
+
+  &__title {
+
+  }
+  &__nav {
+    .arrow {
+
+      &.slick-disabled {
+
+      }
+    }
+    .prev {
+
+     > svg {
+
+     }
+    }
+  }
+  > .articles-sect {
+
+    > .articles-sect__row {
+
+    }
+    > .articles {
+      &.slick-slider {
+        width: 100%;
+        margin-left: 0;
+      }
+      .slick-slide {
+
+        &:nth-last-child(n+2),
+        &:nth-child(even),
+        &:nth-child(3n+3) {
+          margin-right: 40px;
+        }
+        &:nth-child(4n+4) {
+          margin-right: responsive('1440->2560', '103->655');
+        }
+      }
+      .single {
+        max-width: 279px;
+      }
+    }
+  }
+}
+
+#related-posts {
+  .articles:not(.slick-slider) {
+    .single {
+      &:nth-child(n+1) {
+        margin-right: 40px;
+      }
+      &:nth-child(3n+3) {
+        margin-right: 40px;
+      }
+      &:nth-child(4n+4) {
+        margin-right: 0;
+      }
+    }
+  }
+}

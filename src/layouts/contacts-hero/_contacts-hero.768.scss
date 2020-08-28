@@ -2,3 +2,91 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.contacts-wrapper {
+  padding-top: 75px;
+  padding-bottom: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.contacts-decor {
+  top: 105px;
+  left: 5%;
+}
+
+.contacts-sect {
+  padding: 0;
+  &__title {
+    margin-bottom: 45px;
+    font-size: 24px;
+  }
+  &__list {
+    padding-left: 60px;
+  }
+  &__list-item {
+
+    &::before {
+
+    }
+    &::after {
+      width: 40px;
+      left: -60px;
+    }
+  }
+}
+
+.contacts-sect__title,
+.feedback-form__title {
+
+}
+
+.feedback-form-container {
+  padding: 0;
+}
+
+.feedback-form {
+  &__title {
+    font-size: 24px;
+  }
+  .field {
+    width: 335px;
+    &__textarea {
+      height: 110px;
+
+    }
+    &__inp {
+    }
+    &__text {
+    }
+  }
+
+  .field_name {
+
+  }
+  .field_email {
+
+  }
+  .field_msg {
+
+  }
+  .form {
+    &__bottom {
+    }
+  }
+
+  .check {
+    &__inp {
+    }
+    &__pseudo-inp {
+    }
+    &__text {
+    }
+    &__link {
+    }
+  }
+  .btn {
+    margin: 40px 0 0 auto;
+  }
+}

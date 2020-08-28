@@ -8,6 +8,7 @@
     margin-top: -67px;
     padding-top: 110px;
     padding-bottom: 75px;
+    min-height: 357px;
     background:
       url('#') top left/cover no-repeat,
       url('#') top left/cover no-repeat,
@@ -90,6 +91,9 @@
     > .hero-sect__title {
       width: 100%;
       margin-bottom: 10px;
+      .text {
+        width: 100%;
+      }
     }
   }
 }

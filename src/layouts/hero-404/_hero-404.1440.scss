@@ -2,3 +2,31 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.sect-404 {
+  padding-top: 220px;
+  padding-bottom: 190px;
+  &__decor {
+  }
+  &__img {
+    width: 700px;
+  }
+  &__title {
+    > .php {
+    }
+    > .echo {
+    }
+    > .text {
+    }
+    > .quote {
+    }
+  }
+  &__descr {
+    > .text {
+    }
+    > .quote {
+    }
+  }
+  &__btn {
+  }
+}

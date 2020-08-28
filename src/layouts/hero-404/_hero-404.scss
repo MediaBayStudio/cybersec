@@ -2,3 +2,77 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.sect-404 {
+  padding-top: 60px;
+  padding-bottom: 110px;
+  position: relative;
+  color: #f2f5f4;
+  overflow: hidden;
+  &__decor {
+    top: 100px;
+    left: 19%;
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+  }
+  &__img {
+    display: block;
+    margin: auto;
+    width: 280px;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+  &__title {
+    margin: 100px 0 20px;
+    max-width: 280px;
+    font: bold 11px/140% AnonymousPro;
+    position: relative;
+    z-index: 1;
+    > .php {
+      color: $blue;
+      display: inline-block;
+    }
+    .echo {
+      color: $malachite;
+    }
+    > .text {
+      margin: 5px 0 0;
+      display: block;
+      font: 27px/160% PressStart2P;
+      text-transform: uppercase;
+    }
+    > .quote {
+      display: inline-block;
+      color: $red;
+    }
+  }
+  &__descr {
+    max-width: 265px;
+    font: bold 11px/140% AnonymousPro;
+    position: relative;
+    z-index: 1;
+    > .text {
+      font: 600 16px/140% Montserrat;
+      > .br {
+        display: none;
+      }
+    }
+    > .php {
+      display: inline-block;
+      color: $blue;
+    }
+    > .quote {
+      display: inline-block;
+      color: $red;
+    }
+  }
+  &__btn {
+    margin: 40px 0 0 0;
+    width: 196px;
+    height: 40px;
+    position: relative;
+    z-index: 1;
+  }
+}

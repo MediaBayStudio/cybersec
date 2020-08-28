@@ -1,4 +1,6 @@
-let lazy,
+let
+  lazy,
+  Share,
   menu,
   hdr,
   sideMenu,

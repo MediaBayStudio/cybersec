@@ -3,5 +3,5 @@ menu = new MobileMenu('.mobile-menu', {
   closeButtons: '.burger',
   overlay: '.overlay',
   toRight: true,
-  // fixHeader: '.hdr'
+  fixHeader: '.hdr'
 });

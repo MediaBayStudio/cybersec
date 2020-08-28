@@ -2,3 +2,30 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.reviews-sect {
+  &__heading-block {
+  }
+  &__title {
+  }
+  &__nav {
+  }
+  &__slider {
+  }
+}
+.review {
+  &__img {
+  }
+  &__title {
+  }
+  &__descr {
+  }
+}
+
+.reviews-sect__slider.slick-slider .review,
+.review {
+  width: 280px;
+  &:nth-last-child(n+2) {
+    margin-right: 40px;
+  }
+}

@@ -1,11 +1,14 @@
 (function() {
-  // thanksPopup = new Popup('.thanks-popup', {
-  //   closeButtons: '.thanks-popup__close'
-  // });
+  if (q('.feedback-form')) {
+    thanksPopup = new Popup('.thanks-popup', {
+      closeButtons: '.thanks-popup__close'
+    });
 
-  // thanksPopup.addEventListener('popupbeforeopen', function() {
-  //   clearTimeout(thanksPopupTimer);
-  // });
+    thanksPopup.addEventListener('popupbeforeopen', function() {
+      clearTimeout(thanksPopupTimer);
+    });
+  }
+  
 
   searchPopup = new Popup('.search-popup', {
     openButtons: '#search-btn',

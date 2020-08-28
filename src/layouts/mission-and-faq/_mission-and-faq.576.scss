@@ -2,3 +2,30 @@
 @import '../../scss/assets/colors';
 @import '../../scss/assets/mixins';
 @import '../../scss/assets/variables';
+
+.about-sect {
+  &__heading-block {
+    margin-bottom: 25px;
+    padding: 0 80px 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+  }
+  &__title {
+    margin-bottom: 0;
+    padding-bottom: 0; 
+    border-bottom: 0;
+    color: #B7BEB2;
+    transition: color .35s;
+    cursor: pointer;
+    &:hover {
+      color: #2D2D2D;
+    }
+    &.active {
+      color: #2D2D2D;
+    }
+  }
+  &__descr {
+
+  }
+}

@@ -12,7 +12,11 @@
 }
 
 .single__thumb:hover ~ .single__title .single__title-text,
-.single__title:hover .single__title-text {
+.single__title:hover .single__title-text,
+
+.article__title:hover .article__title-text,
+.article__title:hover ~ .article__row > .article__link,
+.article__link:hover  {
   border-bottom-color: currentColor;
 }
 
@@ -29,14 +33,15 @@
   border-bottom-color: transparent;
 }
 
+.article__category:hover,
 .single__category:hover {
   background: $blue;
 }
 
-.single__tag:hover {
-  color: $white;
-  background: $blue;
-}
+// .single__tag:hover {
+//   color: $white;
+//   background: $blue;
+// }
 
 .ftr__telegram:hover,
 .ftr__instagram:hover {
@@ -64,4 +69,9 @@
 .sort__list-item:hover {
   background: $blue;
   color: $white;
+}
+
+.thanks-popup__close:hover,
+.search-popup__close:hover {
+  transform: rotate(180deg);
 }

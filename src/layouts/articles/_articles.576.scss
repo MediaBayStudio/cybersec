@@ -61,10 +61,14 @@
   }
 }
 
+.tags-error {
+  padding-right: responsive('576->767', '20->115.500');
+}
+
 .articles {
   &-wrapper {
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: 100%;
     grid-template-columns: 35% auto;
   }
   &-content {

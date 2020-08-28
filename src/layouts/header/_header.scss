@@ -13,12 +13,23 @@
   padding-top: 20px;
   padding-bottom: 20px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  &.fixed {
+    padding: 12px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    animation: translateToBottom .5s;
+    background: #2D2D2D;
+  }
   &__nav {
     display: none;
   }
   &__logo {
+    flex-shrink: 0;
     &-img {
+      flex-shrink: 0;
       width: 110px;
       height: 27px;
       object-fit: contain;
