@@ -32,7 +32,8 @@ $post_excerpt = kama_excerpt( [
       <li class="breadcrumbs__item current">
         <a href="<?php echo get_term_link( $post_category ) ?>" class="breadcrumbs__link"><?php echo $post_category->name ?></a>
       </li> <?php
-    $category = $post_category;
+      $category = $post_category;
+      break;
     endforeach ?>
   </ul>
 </div>
@@ -64,12 +65,12 @@ $post_excerpt = kama_excerpt( [
           <use xlink:href="<?php echo $template_directory . '/img/icons-sprite.svg#icon-telegram' ?>"></use>
         </svg>
       </a>
-      <a href="https://t.me/share/url?url=<?php echo $href ?>" rel="noopener noreferrer nofollow" target="_blank" class="article-sect__share-link">
+      <a href="https://vkontakte.ru/share.php?url=<?php echo $href ?>" rel="noopener noreferrer nofollow" target="_blank" class="article-sect__share-link">
         <svg class="vk">
           <use xlink:href="<?php echo $template_directory . '/img/icons-sprite.svg#icon-vk' ?>"></use>
         </svg>
       </a>
-      <a href="https://t.me/share/url?url=<?php echo $href ?>" rel="noopener noreferrer nofollow" target="_blank" class="article-sect__share-link last">
+      <a href="http://www.facebook.com/sharer.php?s=100&p[url]=<?php echo $href ?>" rel="noopener noreferrer nofollow" target="_blank" class="article-sect__share-link last">
         <svg class="facebook">
           <use xlink:href="<?php echo $template_directory . '/img/icons-sprite.svg#icon-facebook' ?>"></use>
         </svg>
@@ -147,9 +148,6 @@ $post_excerpt = kama_excerpt( [
     </div> <?php
   endif;
 
-get_footer();
-require 'layouts/overlay/overlay.php';
-require 'layouts/search-popup/search-popup.php';
-require 'layouts/thanks-popup/thanks-popup.php' ?>
+get_footer() ?>
   </body>
 </html>

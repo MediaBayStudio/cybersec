@@ -58,6 +58,9 @@
             'numberposts' => 4,
             'category_name' => $category_slug
           ] );
+          if ( !$posts ) {
+            continue;
+          }
           $sect_id = 'id="' . $category_slug . '"';
           $sect_title = $categories[$i - 1]->name;
           $sect_href = get_term_link( $categories[$i - 1] );

@@ -1,3 +1,4 @@
+
 <div class="search-popup popup">
   <div class="search-popup__cnt">
     <button type="button" class="search-popup__close">

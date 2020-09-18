@@ -26,10 +26,11 @@
 
 .article-sect {
   &__row {
-  
+    flex-flow: row;
   }
   &__tags {
-
+    margin: 0;
+    padding-right: 20px;
   }
   &__tag {
   
@@ -38,7 +39,7 @@
     }
   }
   &__date {
-
+    margin: auto 0 0 auto;
   }
   &__title {
     font-size: 28px;

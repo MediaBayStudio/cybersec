@@ -40,7 +40,8 @@
   font: 16px/140% Montserrat;
   &__row {
     margin-bottom: 35px;
-    // display: flex;
+    display: flex;
+    flex-flow: column;
     // align-items: center;
     // flex-wrap: wrap;
   }
@@ -56,14 +57,19 @@
   &__tag {
     padding: 5px 15px;
     border: 1px solid;
-    margin-right: 10px;
+    margin: 10px 10px 0 0;
+    line-height: 100%;
     &.last {
       margin-right: 0;
     }
   }
   &__date {
+    // margin: 10px 0 0;
     font: bold 14px/168% AnonymousPro;
     color: #b0b0b0;
+    &:first-child:last-child {
+      margin: 0;
+    }
   }
   &__title {
     margin-bottom: 15px;

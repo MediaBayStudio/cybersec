@@ -95,8 +95,8 @@
       width: 100%;
       height: 100%;
       background:
-        linear-gradient(#F2F5F4, transparent 1px) center/180px 180px,
-        linear-gradient(90deg, #F2F5F4, transparent 1px) center/180px 180px,
+        linear-gradient(rgba(242, 245, 244, 0.1), transparent 1px) center/180px 180px,
+        linear-gradient(90deg, rgba(242, 245, 244, 0.1), transparent 1px) center/180px 180px,
         linear-gradient(90deg, #303030 0 0, #303030 0 0) 0 0/25% 100% no-repeat,
         linear-gradient(90deg, #303030 0 0, #303030 0 0) 25% 0/25% 100% no-repeat,
         linear-gradient(90deg, #303030 0 0, #303030 0 0) 50% 0/25% 100% no-repeat,

@@ -76,3 +76,10 @@
     grid-column: 2;
   }
 }
+
+
+.tags {
+  &__list {
+    width: responsive('576->767', '333->363');
+  }
+}

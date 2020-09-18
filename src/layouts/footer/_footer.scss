@@ -24,11 +24,12 @@
     z-index: -1;
   }
   &__logo {
-    width: 145px;
     margin-bottom: 35px;
     flex-shrink: 0;
   }
   &__logo-img {
+    width: 145px;
+    height: 36px;
     flex-shrink: 0;
   }
   &__copy {
@@ -97,12 +98,13 @@
     transition: border-bottom-color .35s, color .35s;
   }
   &__dev {
-    margin-top: 15px;
+    font-size: 14px;
+    // margin-top: 15px;
     &-text {
-
+      // font-size: 14px;
     }
     &-link {
-      font: bolder 16px/100% SegoeUI;
+      font: bolder 14px/100% SegoeUI;
       letter-spacing: 0.08em;
       transition: color .35s;
     }

@@ -21,6 +21,10 @@
   <div class="ftr__copy">
     &copy; <?php echo date( 'Y' ) ?> CyberSec. <br class="br">
     All rights reserved.
+    <div class="ftr__dev">
+      <span class="ftr__dev-text">Разработка – </span>
+      <a href="https://media-bay.ru" rel="noopener noreferrer nofollow" target="_blank" class="ftr__dev-link">media bay</a>
+    </div>
   </div> <?php
   global $categories;
   if ( $categories ) : ?>
@@ -54,14 +58,14 @@
     </a>
   </div>
   <div class="ftr__bottom">
-    <a href="policy.pdf" rel="noopener noreferrer nofollow" target="_blank" class="ftr__policy" title="Посмотреть политику конфиденциальности">Политика конфиденциальности</a>
-    <div class="ftr__dev">
-      <span class="ftr__dev-text">Дизайн и разработка – </span>
-      <a href="https://media-bay.ru" rel="noopener noreferrer nofollow" target="_blank" class="ftr__dev-link">media bay</a>
-    </div>
+    <a href="policy" rel="noopener noreferrer nofollow" target="_blank" class="ftr__policy" title="Посмотреть политику конфиденциальности">Политика конфиденциальности</a>
   </div>
 </footer>
+
 <div id="fake-scrollbar"></div> <?php
+require 'layouts/overlay/overlay.php';
+require 'layouts/search-popup/search-popup.php';
+require 'layouts/thanks-popup/thanks-popup.php';
 wp_footer() ?>
 <!-- 	</body>
 </html> -->

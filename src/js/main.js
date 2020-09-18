@@ -207,7 +207,7 @@ menu = new MobileMenu('.mobile-menu', {
   openButton: '.burger',
   closeButtons: '.burger',
   overlay: '.overlay',
-  toRight: true,
+  // toRight: true,
   fixHeader: '.hdr'
 });
 (function() {
