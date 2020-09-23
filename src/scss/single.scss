@@ -11,6 +11,11 @@ body {
   a {
     display: inline;
     word-break: break-all;
+    color: $blue;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .wp-block-code {

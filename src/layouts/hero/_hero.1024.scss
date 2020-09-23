@@ -44,3 +44,10 @@
     }
   }
 }
+
+
+.hero-sect__title > .text {
+  &.tag {
+    margin-bottom: -5px;
+  }
+}

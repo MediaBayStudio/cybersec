@@ -9,11 +9,13 @@
     if ( $categories ) : ?>
       <menu class="mobile-menu__menu"> <?php
     endif;
-    foreach ( $categories as $category ) : ?>
+    if ( is_array( $categories ) ) :
+      foreach ( $categories as $category ) : ?>
         <li class="mobile-menu__menu-item">
           <a href="<?php echo get_term_link( $category ) ?>" class="mobile-menu__menu-link"><?php echo $category->name ?></a>
         </li> <?php
-    endforeach;
+      endforeach;
+    endif;
     if ( $categories ) : ?>
       </menu> <?php
     endif;

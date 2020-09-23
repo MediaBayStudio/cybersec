@@ -1,10 +1,10 @@
 <?php
   global
     $template_directory,
-    $queried_object,
     $is_category,
     $is_front_page,
-    $categories ?>
+    $categories;
+    $queried_object = get_queried_object() ?>
 <div class="articles-wrapper">
   <aside class="side-menu">
     <img src="<?php echo $template_directory ?>/img/side-menu-decor.svg" alt="Декор" class="side-menu-decor">
@@ -20,7 +20,7 @@
     ] ) ?>
   </aside> 
   <div class="articles-content"> <?php
-  if ( is_page( 'category' ) ) {
+  if ( is_page( 'category' ) || is_tag() ) {
     $is_category = true;
     $is_category_page = true;
   }
@@ -30,12 +30,14 @@
     $category_id = $is_category_page ? 0 : $queried_object->term_id;
     $category_count = $is_category_page ? wp_count_posts()->publish : $queried_object->count;
 
+    $quey_by = is_tag() ? 'tag' : 'category_name';
+
     $sect_id = 'data-category-id="' . $category_id . '" data-posts-count="' . $category_count . '"';
     $sect_title = $queried_object->name;
 
     $posts = get_posts( [
       'numberposts' => $numberposts,
-      'category_name' => $category_slug
+      $quey_by => $category_slug
     ] );
 
     print_article( $is_front_page, $is_category, $posts, $sect_id, $sect_title );

@@ -4,8 +4,9 @@
     $current_category,
     $is_category,
     $is_front_page,
-    $categories,
-    $queried_object;
+    $categories;
+
+    $queried_object = get_queried_object();
 
 // lazyload для фоновых картинок секции
 $hero_sect_datasrc = 'url(' . $template_directory . '/img/hero-sect-img.576.jpg)';
@@ -18,18 +19,28 @@ $hero_sect_datamedia = '
 
     if ( $is_front_page ) {
     $hero_sect_title = '<code class="php">&lt;?php <span class="echo">echo</span></code> <span class="quote">“</span><span class="text"><span>О хакинге <br class="br"> и информационноЙ безопасности <mark class="mark">честно</mark></span><span class="quote">”</span><code class="php">?&gt;</code></span>';
-  } else if ( $is_category ) {
+  } else if ( $is_category || is_tag() ) {
     if ( is_page( 'category' ) ) {
       $category_title = 'Свежак';
       $category_descr = $queried_object->description . 'Свежие материалы от наших лучших авторов. Топовые материалы прямиком из-под пера. <span class="quote">”</span> <code class="php">?&gt;</code>';
+    } else if ( is_tag() ) {
+      $category_title = $queried_object->name;
+      $category_descr = 'все записи к выбранному тегу <span class="quote">”</span>
+      <code class="php">?&gt;</code>';
     } else {
       $category_title = $queried_object->name;
       $category_descr = $queried_object->description . ' <span class="quote">”</span>
       <code class="php">?&gt;</code>';
     }
+
+    if ( is_tag() ) {
+      $text_class = ' tag';
+    } else {
+      $text_class = '';
+    }
     
     $hero_sect_class = ' hero-category';
-    $hero_sect_title = '<code class="php">&lt;?php <span class="echo">echo</span></code><span class="quote">“</span><span class="text"><mark class="mark">' . $category_title . '</mark></span>';
+    $hero_sect_title = '<code class="php">&lt;?php <span class="echo">echo</span></code><span class="quote">“</span><span class="text' . $text_class . '"><mark class="mark">' . $category_title . '</mark></span>';
   } ?>
 
 <section class="hero-sect<?php echo $hero_sect_class ?> container lazy" data-src="<?php echo $hero_sect_datasrc ?>" data-media="<?php echo $hero_sect_datamedia ?>"> <?php
@@ -37,7 +48,7 @@ $hero_sect_datamedia = '
     the_content();
   } else { ?>
     <h1 class="hero-sect__title"><?php echo $hero_sect_title ?></h1> <?php
-    if ( $is_category || is_page( 'category' ) ) : ?>
+    if ( $is_category || is_page( 'category' ) || is_tag() ) : ?>
       <p class="hero-sect__descr"><?php echo $category_descr ?></p> <?php
     endif;
   } ?>

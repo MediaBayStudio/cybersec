@@ -5,7 +5,7 @@
   $is_front_page = is_front_page();
   $queried_object = get_queried_object();
   $categories = get_categories( ['hide_empty' => 0] );
-
+  
   if ( is_page( 'category' ) ) {
     $is_category = true;
   }

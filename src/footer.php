@@ -30,11 +30,13 @@
   if ( $categories ) : ?>
     <menu class="ftr__menu"> <?php
   endif;
-  foreach ( $categories as $category ) : if ( $category->slug === 'hot' ) continue ?>
-      <li class="ftr__menu-item">
-        <a href="<?php echo get_term_link( $category ) ?>" class="ftr__menu-link"><?php echo $category->name ?></a>
-      </li> <?php
-  endforeach;
+  if ( is_array( $categories ) ) :
+    foreach ( $categories as $category ) : if ( $category->slug === 'hot' ) continue ?>
+        <li class="ftr__menu-item">
+          <a href="<?php echo get_term_link( $category ) ?>" class="ftr__menu-link"><?php echo $category->name ?></a>
+        </li> <?php
+    endforeach;
+  endif;
   if ( $categories ) : ?>
     </menu> <?php
   endif;
