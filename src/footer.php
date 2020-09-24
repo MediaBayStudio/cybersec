@@ -65,7 +65,7 @@
 </footer>
 
 <div id="fake-scrollbar"></div> <?php
-require 'layouts/overlay/overlay.php';
+// require 'layouts/overlay/overlay.php';
 require 'layouts/search-popup/search-popup.php';
 require 'layouts/thanks-popup/thanks-popup.php';
 wp_footer() ?>

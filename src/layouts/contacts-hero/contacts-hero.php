@@ -18,3 +18,4 @@
 <div class="feedback-form-container container"> <?php
   #echo do_shortcode('[contact-form-7 id="5" title="Напишите нам" html_class="feedback-form"]') ?>
 </div> -->
+<?php
