@@ -47,7 +47,7 @@ $post_excerpt = kama_excerpt( [
     endif;
       foreach ( $post_tags as $post_tag ) :
         $last_class = $last_post_tag === $post_tag ? ' last' : '' ?>
-        <span class="article-sect__tag<?php echo $last_class ?>"><?php echo $post_tag->name ?></span> <?php
+        <a href="<?php echo get_tag_link( $post_tag->term_id ) ?>" class="article-sect__tag<?php echo $last_class ?>"><?php echo $post_tag->name ?></a> <?php
       $tags[] = $post_tag->slug;
       endforeach;
     if ( $post_tags ) : ?>
